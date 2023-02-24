@@ -1,0 +1,161 @@
+        <!-- =============================================================
+            FICHA DE PERFIL DE USUARIO
+        ============================================================== -->
+        <div class="row mt-1">
+          <!-- column -->
+          <div class="col-lg-12">
+            <div class="card mb-2">
+              <div class="card-body">
+                <p class="mb-2"><strong>Ficha Técnica</strong></p>
+                    <div class="bloque2 mb-0">
+                      <div class="row">
+                          <div class="col-md-6">
+                            <div class="row">
+                              <div class="col-md-4">
+                              <span class="d-inline-b wp120">Nº Patente</span>
+                            </div>
+                            <div class="col-md-8">
+                              <select class="form-control" [(ngModel)]="cboPatente" id="cboPatente" name="cboPatente">
+                                <option value="0">Seleccionar Patente</option>
+                                <option *ngFor="let dgp of datosGeneralesPatente"
+                                value="{{dgp.id}}">{{dgp.numPatente}}</option>
+                              </select>
+                            </div>
+                          </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="row">
+                              <div class="col-md-4">
+                              <span class="d-inline-b wp120">Emitido en</span>
+                            </div>
+                            <div class="col-md-8">
+                            <input type="text" class="form-control" [(ngModel)]="txtLugarEmitido"value="" id="txtLugarEmitido" name="txtLugarEmitido">
+                            </div>
+                          </div>
+                          </div>
+                      </div>
+
+                      <div class="row linea">
+                        <div class="col-md-6">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <span class="d-inline-b wp120">Válido Desde</span>
+                          </div>
+                          <div class="col-md-8">
+                          <input type="date" class="form-control" [(ngModel)]="iFechai" name="iFechai" value="">
+                          </div>
+                        </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="row">
+                            <div class="col-md-4">
+                            <span class="d-inline-b wp120">Quién lo emite</span>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" class="form-control"  value="" id="txtQuienEmite" [(ngModel)]="txtQuienEmite" name="txtQuienEmite"  autocomplete="off">
+                          </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="row linea">
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-md-4">
+                          <span class="d-inline-b wp120">Válido Hasta</span>
+                        </div>
+                        <div class="col-md-8">
+                          <input type="date" class="form-control" [(ngModel)]="iFechaf" name="iFechaf" value="">
+                        </div>
+                      </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="row">
+                        <div class="col-md-4">
+                            <span class="d-inline-b wp120">Certificado Contaminates</span>
+                          </div>
+                          <div class="col-md-8">
+                          <select class="form-control" id="txtContaminates" [(ngModel)]="txtContaminates"  name="txtContaminates" >
+                                <option value="SI">SI</option>
+                                <option value="NO">NO</option>
+                              </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row linea">
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-md-4">
+                          <span class="d-inline-b wp120">Observaciones</span>
+                        </div>
+                        <div class="col-md-8">
+                        <textarea class="form-control" [(ngModel)]="txtObservaciones" rows="5"></textarea>
+                        </div>
+                      </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-md-4">
+                          </div>
+                          <div class="col-md-8">
+                            <input id="btnAgregar" *ngIf="idEditar == '0'" type="button" (click)="addRevTecnica()" value="Agregar" class="boton" style="float:right">
+                            <input id="btnAgregar" *ngIf="idEditar != '0'" type="button" (click)="updateRevTec(idEditar)" value="Guardar" class="boton" style="float:right">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive m-t-10">
+                                    <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Patente</th>
+                                                <th>Válido Desde</th>
+                                                <th>Válido Hasta</th>
+                                                <th>Emitido en</th>
+                                                <th>Quién lo emite</th>
+                                                <th>Posee Certificado</th>
+                                                <th>Observaciones</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr *ngFor="let rt of datosrevTec">
+                                                <td>{{rt.numPatente}}</td>
+                                                <td>{{rt.fchDesde}}</td>
+                                                <td>{{rt.fchHasta}}</td>
+                                                <td>{{rt.lugarEmitido}}</td>
+                                                <td>{{rt.quienEmite}}</td>
+                                                <td>{{rt.certContaminate}}</td>
+                                                <td>{{rt.observaciones}}</td>                                                
+                                                <td>
+                                                <button type="button" (click)="conultarRevTecID(rt.id)" class="btn waves-effect waves-light btn-warning">Editar</button>&nbsp;
+                                                 <button type="button" (click)="deleteRevTec(rt.id)" class="btn waves-effect waves-light btn-danger">Eliminar</button>
+                                                 </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>

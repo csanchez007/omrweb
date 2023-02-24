@@ -1,0 +1,161 @@
+        <!-- =============================================================
+            FICHA DE PERFIL DE USUARIO
+        ============================================================== -->
+        <div class="row mt-1">
+          <!-- column -->
+          <div class="col-lg-12">
+            <div class="card mb-2">
+              <div class="card-body">
+                <p class="mb-2"><strong>Ficha Técnica</strong></p>
+                    <div class="bloque2 mb-0">
+                      <div class="row">
+                          <div class="col-md-6">
+                            <div class="row">
+                              <div class="col-md-4">
+                              <span class="d-inline-b wp120">Nº Patente</span>
+                            </div>
+                            <div class="col-md-8">
+                            <input type="text" class="form-control" value="" id="txtPatente"
+                            name="txtFolioDesde" maxlength="18" >
+                            </div>
+                          </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="row">
+                              <div class="col-md-4">
+                              <span class="d-inline-b wp120">Tipo</span>
+                            </div>
+                            <div class="col-md-8">
+                              <select class="form-control" id="cboInsumos"  name="cboInsumos" >
+                                <option value="">Seleccione Tipo</option>
+                                <option value="">Camion</option>
+                                <option value="">Micro o Bus</option>
+                                <option value="">Automovil</option>
+                              </select>
+                            </div>
+                          </div>
+                          </div>
+                      </div>
+
+                      <div class="row linea">
+                        <div class="col-md-6">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <span class="d-inline-b wp120">Modelo y Marca:</span>
+                          </div>
+                          <div class="col-md-8">
+                          <select class="form-control" id="cboInsumos"  name="cboInsumos" >
+                                <option value="">Seleccione Vigencia</option>
+                                <option value="">Vigente</option>
+                                <option value="">Vencido</option>
+                                <option value="">Por Vencer</option>
+                              </select>
+                          </div>
+                        </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="row">
+                            <div class="col-md-4">
+                            <span class="d-inline-b wp120">Nº Chasis:</span>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" class="form-control"  value="" id="txtFolioHasta"
+                            name="txtFolioHasta"  maxlength="18" autocomplete="off">
+                          </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="row linea">
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <span class="d-inline-b wp120">Nº de Motor:</span>
+                        </div>
+                        <div class="col-md-8">
+                          <input type="text" class="form-control" value="" id="txtCantidad"
+                          name="txtCantidad"  maxlength="6" autocomplete="off">
+                        </div>
+                      </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-md-4">
+                          </div>
+                          <div class="col-md-8">
+                            <input id="btnAgregar" type="button"  value="Agregar" class="boton" style="float:right">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive m-t-10">
+                                    <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Patente</th>
+                                                <th>Tipo</th>
+                                                <th>Modelo y Marca:</th>
+                                                <th>Nº Chasis</th>
+                                                <th>Nº de Motor</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>BR-003</td>
+                                                <td><strong>Auto</strong></td>
+                                                <td><strong>Chevrolet Onix</strong></td>
+                                                <td>12321456789</td>
+                                                <td>12321456789</td>
+                                                <td>
+                                                <button type="button" class="btn waves-effect waves-light btn-warning">Editar</button>&nbsp;
+                                                 <button type="button" class="btn waves-effect waves-light btn-danger">Eliminar</button>
+                                                 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>BR-004</td>
+                                                <td>Camion</td>
+                                                <td>Mercedes</td>
+                                                <td>12321456789</td>
+                                                <td>12321456789</td>
+                                                <td>
+                                                <button type="button" class="btn waves-effect waves-light btn-warning">Editar</button>&nbsp;
+                                                 <button type="button" class="btn waves-effect waves-light btn-danger">Eliminar</button>
+                                                 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>BR-005</td>
+                                                <td>Auto</td>
+                                                <td>Fiat 500<</td>
+                                                <td>12321456789</td>
+                                                <td>12321456789</td>
+                                                <td>
+                                                <button type="button" class="btn waves-effect waves-light btn-warning">Editar</button>&nbsp;
+                                                 <button type="button" class="btn waves-effect waves-light btn-danger">Eliminar</button>
+                                                 </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>

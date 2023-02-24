@@ -1,0 +1,208 @@
+<!-- =============================================================
+            FICHA DE PERFIL DE USUARIO
+        ============================================================== -->
+        <div class="row mt-1">
+          <!-- column -->
+          <div class="col-lg-12">
+              <div class="card mb-2">
+                  <div class="card-body">
+                      <p class="mb-2"><strong>Ficha Stock</strong></p>
+                      <div class="bloque2 mb-0">
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="row">
+                                      <div class="col-md-4">
+                                          <span class="d-inline-b wp120">Producto</span>
+                                      </div>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" value="" [(ngModel)]="nom_producto" id="nom_producto" name="nom_producto">
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                  <div class="row">
+                                      <div class="col-md-4">
+                                          <span class="d-inline-b wp120">Cod. Producto:</span>
+                                      </div>
+                                      <div class="col-md-8">
+                                        <input type="text" class="form-control" value="" [(ngModel)]="cod_producto" id="cod_producto" name="cod_producto">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="row linea">
+                              <div class="col-md-6">
+                                  <div class="row">
+                                      <div class="col-md-4">
+                                          <span class="d-inline-b wp120">Descripción:</span>
+                                      </div>
+                                      <div class="col-md-8">
+                                        <input type="text" class="form-control" value="" [(ngModel)]="descripcion" id="descripcion" name="descripcion">
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                  <div class="row">
+                                      <div class="col-md-4">
+                                          <span class="d-inline-b wp120">Entrante:</span>
+                                      </div>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" value="" (keyup)="calculoStock()" [(ngModel)]="cantidad_entrante" id="cantidad_entrante" name="chasis" maxlength="18" autocomplete="off">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="row linea">
+                              <div class="col-md-6">
+                                  <div class="row">
+                                      <div class="col-md-4">
+                                          <span class="d-inline-b wp120">Saliente:</span>
+                                      </div>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" value="" (keyup)="calculoStock()" [(ngModel)]="cantidad_saliente" id="cantidad_saliente" name="cantidad_saliente" autocomplete="off">
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                  <div class="row">
+                                      <div class="col-md-4">
+                                          <span class="d-inline-b wp120">Cantidad Total:</span>
+                                      </div>
+                                      <div class="col-md-8">
+                                        <input type="text" class="form-control" value="" [(ngModel)]="cantidad_total" id="cantidad_total" name="cantidad_total" autocomplete="off" disabled>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+
+                          <div class="row linea">
+                              <div class="col-md-6">
+                                  <div class="row">
+                                      <div class="col-md-4">
+                                          <span class="d-inline-b wp120">Precio: $</span>
+                                      </div>
+                                      <div class="col-md-8">
+                                        <input type="text" class="form-control" value="" [(ngModel)]="precio" id="precio" name="precio" autocomplete="off">
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                  <div class="row">
+                                      <div class="col-md-4">
+                                          <span class="d-inline-b wp120">Foto: </span>
+                                      </div>
+                                      <div class="col-md-8">
+                                        <input type="file" class="form-control" value="" [(ngModel)]="ruta_foto" id="ruta_foto" name="ruta_foto" autocomplete="off">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="row linea">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <span class="d-inline-b wp120">Estado:</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <select class="form-control" [(ngModel)]="estado" id="estado" name="estado">
+                                        <option value="0">Seleccione Estado</option>
+                                        <option value="1">Activo</option>
+                                        <option value="0">Inactivo</option>
+                                      </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <span class="d-inline-b wp120">Tipo: </span>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <select class="form-control" [(ngModel)]="tipo" id="tipo" name="tipo" disabled>
+                                        <option value="1" selected >Stock</option>
+                                      </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                          <div class="row linea">
+                              <div class="col-md-6">
+                                  <div class="row">
+                                      <div class="col-md-4"></div>
+                                      <div class="col-md-8"></div>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                  <div class="row">
+                                      <div class="col-md-4">
+                                      </div>
+                                      <div class="col-md-8">
+                                          <input id="btnAgregar" *ngIf="idEditar == '0'" type="button" (click)="uploadimagen(0)" value="Agregar" class="boton" style="float:right">
+                                          <input id="btnAgregar" *ngIf="idEditar != '0'" type="button" (click)="uploadimagen(idEditar)" value="Guardar" class="boton" style="float:right">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <div class="row">
+          <div class="col-12">
+              <div class="card">
+                  <div class="card-body">
+                      <div class="table-responsive m-t-10">
+                          <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                              <thead>
+                                  <tr>
+                                      <th>Producto</th>
+                                      <th>Cod. Producto</th>
+                                      <th>Descripción</th>
+                                      <th>Cantidad Entrante</th>
+                                      <th>Cantidad Saliente</th>
+                                      <th>Cantidad Total</th>
+                                      <th>Precio</th>
+                                      <th>Estado</th>
+                                      <th>Foto</th>
+                                      <th>Acciones</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let stock of detallesStock">
+                                      <td>{{stock.nom_producto}}</td>
+                                      <td>{{stock.cod_producto}}</td>
+                                      <td>{{stock.descripcion}}</td>
+                                      <td>{{stock.cantidad_entrante}}</td>
+                                      <td>{{stock.cantidad_saliente}}</td>
+                                      <td>{{stock.cantidad_total}}</td>
+                                      <td>${{stock.precio}}</td>
+                                      <td>{{stock.est}}</td>
+                                      <td><img src="{{stock.ruta_foto}}" width=53 height=73 *ngIf="stock.ruta_foto"></td>
+                                      <td>
+                                         <button type="button" (click)="conultarPorStock(stock.id, stock.tipo)" class="btn waves-effect waves-light btn-warning">Editar</button>&nbsp;
+                                          <button type="button" (click)="deleteStockl(stock.id)" class="btn waves-effect waves-light btn-danger">Eliminar</button>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>

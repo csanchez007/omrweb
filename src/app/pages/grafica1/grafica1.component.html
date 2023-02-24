@@ -1,0 +1,93 @@
+<div class="card-body">
+  <h4 class="card-title" id="titulo">Informes</h4>
+  <!-- ============================================================== -->
+  <!-- Stats box -->
+  <!-- ============================================================== -->
+ <div id="graficos"></div>
+  <div class="row">
+      <div class="col-lg-3">
+          <div class="">
+              <div class="card-body">
+                  <div class="d-flex">
+                      <div class="m-r-20 align-self-center"><img src="../assets/images/icon/income.png" alt="Income" /></div>
+                      <div class="align-self-center">
+                          <h6 class="text-muted m-t-10 m-b-0">Camiones detenidos</h6>
+                          <h2 class="m-t-0">2</h2>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-3">
+          <div class="">
+              <div class="card-body">
+                  <div class="d-flex">
+                      <div class="m-r-20 align-self-center"><img src="../assets/images/icon/assets.png" alt="Income" /></div>
+                      <div class="align-self-center">
+                          <h6 class="text-muted m-t-10 m-b-0">Entran a taller</h6>
+                          <h2 class="m-t-0">7</h2>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-3">
+          <div class="">
+              <div class="card-body">
+                  <div class="d-flex">
+                      <div class="m-r-20 align-self-center"><img src="../assets/images/icon/expense.png" alt="Income" /></div>
+                      <div class="align-self-center">
+                          <h6 class="text-muted m-t-10 m-b-0">Sin arreglo</h6>
+                          <h2 class="m-t-0">2</h2>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-3">
+          <div class="">
+              <div class="card-body">
+                  <div class="d-flex">
+                      <div class="m-r-20 align-self-center"><img src="../assets/images/icon/staff.png" alt="Income" /></div>
+                      <div class="align-self-center">
+                          <h6 class="text-muted m-t-10 m-b-0">Reparados</h6>
+                          <h2 class="m-t-0">9</h2>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="row">
+    <div class="col-6">
+      <app-dona [labels]="labels1"
+      [data]="data1"
+      title="Compras">
+      </app-dona>
+
+    </div>
+
+    <div class="col-6">
+      <app-dona [labels]="labels2"
+      [data]="data2"
+      title="Móvil en taller">
+      </app-dona>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+      <app-dona [labels]="labels3"
+      [data]="data3"
+      title="Cambios">
+      </app-dona>
+    </div>
+
+    <div class="col-6">
+      <app-dona [labels]="labels4"
+      [data]="data4"
+      title="Estado de reparación">
+      </app-dona>
+    </div>
+</div>
