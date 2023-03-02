@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 })
 export class ReporteService {
 
-  // usser = localStorage.getItem('usuario');
-  usser = '1-9';
+  // user = localStorage.getItem('usuario');
+  user = '1-9';
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -34,7 +34,7 @@ export class ReporteService {
   consultServis(){
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios/servicios.php?usser=' + this.usser + '&getAllServicios')
+        this.http.get(URL_SERVIS + '/omrservice/servicios/servicios.php?user=' + this.user + '&getAllServicios')
           .subscribe(
             data => {
               resolve(data);
@@ -66,7 +66,7 @@ export class ReporteService {
   }
 
   // ==============================================================
-  // CONSULTA UNO DE LOS SERVICIOS
+  // CONSULTA UNO DE LOS REPORTES
   // ==============================================================
   consultarPorReporte(idReporte) {
     return new Promise(
@@ -83,14 +83,13 @@ export class ReporteService {
       }
     );
   }
-
-    // ==============================================================
+  // ==============================================================
   // CONSULTA TODOS LOS SERVICIOS DE SOLUCION
   // ==============================================================
   detalleSolcion() {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios/servicios.php?usser=' + this.usser + '&getAllSolucion')
+        this.http.get(URL_SERVIS + '/omrservice/servicios/servicios.php?user=' + this.user + '&getAllSolucion')
           .subscribe(
             data => {
               resolve(data);
@@ -102,20 +101,37 @@ export class ReporteService {
       }
     );
   }
-
+  // ==============================================================
+  // CONSULTA UNO DE LAS SOLUCIONES
+  // ==============================================================
+  consultarPorSolucion(idSoluion) {
+    return new Promise(
+      resolve => {
+        this.http.get(URL_SERVIS + '/omrservice/servicios/servicios.php?idReporte=' + idSoluion + '&getOneSolucion')
+          .subscribe(
+            data => {
+              resolve(data);
+            },
+            err => {
+              console.log(err);
+            }
+          );
+      }
+    );
+  }
     // ==============================================================
   // REGISTRO DE  REPORTES SOLUCION
   // ==============================================================
   enviarSolucionAdd( reporte, desde, hasta, descripcion/*, urlImage, coords*/) {
     //this.setrRUTvarFoto(usuario);
     const datos = {
-      usuario: this.usser,// localStorage.getItem('usuario'),
+      usuario: this.user,// localStorage.getItem('usuario'),
       reporte,
       desde,
       hasta,
       descripcion,
      // rutaFoto: urlImage,
-      usuario_crea:  this.usser,
+      usuario_crea:  this.user,
      // coords
     };
     const body = JSON.stringify(datos);

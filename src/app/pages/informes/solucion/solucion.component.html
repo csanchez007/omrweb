@@ -16,8 +16,9 @@
                           </div>
                           <div class="col-md-8">
                               <select class="form-control" id="cboPredefinido" name="cboPredefinido" (change)="llamarReportePorId()"  [(ngModel)]="cboPredefinido">
-                          <option value="0">Seleccione Detalle a Reparar</option>
-                          <option *ngFor="let pre of predefinido;" value="{{pre.id}}" >{{pre.descripcion}}<option>
+                                <option *ngIf="definidoSelctId != 0" value="{{definidoSelctId}}">{{definidoSelectText}}</option>
+                                <option  *ngIf="definidoSelctId == 0" value="0">Seleccione Detalle a Reparar</option>
+                                <option *ngFor="let pre of predefinido;" value="{{pre.id}}" >{{pre.descripcion}}<option>
                         </select>
                           </div>
                       </div>
@@ -68,8 +69,28 @@
                               <span class="d-inline-b wp120">Descripción</span>
                           </div>
                           <div class="col-md-8">
-                              <textarea class="form-control" id="txtDescripción" rows="5"></textarea>
+                              <textarea class="form-control" [(ngModel)]="txtDescripcion" name="txtDescripción" id="txtDescripción" rows="5"></textarea>
                           </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="d-inline-b wp120">Foto: </span>
+                        </div>
+                        <div class="col-md-8">
+                          <input type="file" class="form-control" value=""  id="ruta_foto" name="ruta_foto" autocomplete="off">
+                        </div>
+                    </div>
+                  </div>
+                  </div>
+
+                  <div class="row linea">
+                    <div class="col-md-6">
+                      <div class="row">
+                          <div class="col-md-4"></div>
+                          <div class="col-md-8"></div>
                       </div>
                   </div>
 
@@ -79,6 +100,7 @@
                               </div>
                               <div class="col-md-8">
                                   <input id="btnAgregar" type="button" onclick="addUserOrUpdate();" value="Guardar" class="boton" style="float:right">
+                                  <input id="btnLimpiar" type="button" (click)="limpiar();" value="Limpiar" class="boton" style="float:right">
                               </div>
                           </div>
                       </div>
@@ -115,7 +137,7 @@
                               <td>{{detalle.hasta}}</td>
                               <td>{{detalle.descripcion}}</td>
                               <td>
-                                  <button type="button" class="btn waves-effect waves-light btn-warning">Editar</button>&nbsp;
+                                  <button type="button" (click)="llamarSolucionPorId(detalle.id)" class="btn waves-effect waves-light btn-warning">Editar</button>&nbsp;
                                   <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalReporte" (click)="llamarAlbumReporte(detalle.id)">Ver Fotos</button>
                               </td>
                           </tr>
