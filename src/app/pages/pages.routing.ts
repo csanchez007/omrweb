@@ -38,6 +38,12 @@ import { ReportesComponent } from './informes/reportes/reportes.component';
 import { SolucionComponent } from './informes/solucion/solucion.component';
 import { MensajesComponent } from './informes/mensajes/mensajes.component';
 import { NotificacionesComponent } from './informes/notificaciones/notificaciones.component';
+/* ==============================================================
+    DOCUMENTOS
+  ============================================================== */
+import { RegistroMovilComponent } from './documentos/registro-movil/registro-movil.component';
+import { RegistroConductorComponent } from './documentos/registro-conductor/registro-conductor.component';
+import { OtrosDocumentosComponent } from './documentos/otros-documentos/otros-documentos.component';
 
 
 const routes: Routes = [
@@ -81,7 +87,13 @@ const routes: Routes = [
             { path: 'solucion', component: SolucionComponent, data: { titulo: 'Solucion' }},
             { path: 'mensajes', component: MensajesComponent, data: { titulo: 'Mensajes' }},
             { path: 'notificaciones', component: NotificacionesComponent, data: { titulo: 'Notificaciones' }},
-        ]
+            /* ==============================================================
+               DOCUMENTOS
+              ============================================================== */
+            { path: 'removil', component: RegistroMovilComponent, data: { titulo: 'Registro Móvil' }},
+            { path: 'reconductor', component: RegistroConductorComponent, data: { titulo: 'Registro Conductor' }},
+            { path: 'tipodoc', component: OtrosDocumentosComponent, data: { titulo: 'Otros Documentos' }},
+          ]
     },
 ];
 

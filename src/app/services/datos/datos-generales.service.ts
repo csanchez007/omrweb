@@ -30,6 +30,42 @@ export class DatosGeneralesService {
   }
 
   // ==============================================================
+  // CONSULTA TODOS LOS DATOS GENERALES DEL MÓVIL
+  // ==============================================================
+  consultarPorDatosMovil() {
+    return new Promise(
+      resolve => {
+        this.http.get(URL_SERVIS + '/omrservice/servicios/datos.php?getAllDatosMovil')
+          .subscribe(
+            data => {
+              resolve(data);
+            },
+            err => {
+              console.log(err);
+            }
+          );
+      }
+    );
+  }
+  // ==============================================================
+  // CONSULTA TODOS LOS DATOS GENERALES DEL MÓVIL POR ID
+  // ==============================================================
+  consultarPorDatosMovilID(id) {
+    return new Promise(
+      resolve => {
+        this.http.get(URL_SERVIS + '/omrservice/servicios/datos.php?id=' + id + '&getAllDatosMovilId')
+          .subscribe(
+            data => {
+              resolve(data);
+            },
+            err => {
+              console.log(err);
+            }
+          );
+      }
+    );
+  }
+  // ==============================================================
   // INSERTAR DATOS GENERALES
   // ==============================================================
   datosGralAdd(datos) {

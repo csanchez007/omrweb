@@ -15,7 +15,11 @@
                                     <span class="d-inline-b wp120">Nº Patente</span>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" value="" [(ngModel)]="txtPatente" id="txtPatente" name="txtPatente" maxlength="18">
+                                  <select class="form-control" (change)="llamardatosMovil()" [(ngModel)]="cboPatente" id="cboPatente" name="cboPatente" [disabled]="isEnabled">
+                                    <option value="0">Seleccionar Patente</option>
+                                    <option *ngFor="let dgp of datosGeneralesPatente"
+                                    value="{{dgp.id}}">{{dgp.numPatente}}</option>
+                                  </select>
                                 </div>
                             </div>
                         </div>
@@ -26,7 +30,7 @@
                                     <span class="d-inline-b wp120">Rev. Técnica:</span>
                                 </div>
                                 <div class="col-md-8">
-                                    <select class="form-control" [(ngModel)]="revTecnica" id="revTecnica" name="revTecnica">
+                                <select class="form-control" [(ngModel)]="revTecnica" id="revTecnica" name="revTecnica" disabled>
                                 <option value="0">Seleccione Vigencia</option>
                                 <option *ngFor="let ed of estDato"
                                 value="{{ed.id}}">{{ed.nomEstado}}
@@ -44,7 +48,7 @@
                                     <span class="d-inline-b wp120">Permiso de Circ.:</span>
                                 </div>
                                 <div class="col-md-8">
-                                    <select class="form-control" [(ngModel)]="perCirculacion" id="perCirculacion" name="perCirculacion">
+                                <select class="form-control" [(ngModel)]="perCirculacion" id="perCirculacion" name="perCirculacion" disabled>
                                 <option value="0">Seleccione Vigencia</option>
                                 <option *ngFor="let ed of estDato"
                                 value="{{ed.id}}">{{ed.nomEstado}}
@@ -60,7 +64,7 @@
                                     <span class="d-inline-b wp120">Nº Chasis:</span>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" value="" [(ngModel)]="chasis" id="chasis" name="chasis" maxlength="18" autocomplete="off">
+                                    <input type="text" class="form-control" value="" [(ngModel)]="chasis" id="chasis" name="chasis" autocomplete="off" disabled>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +77,7 @@
                                     <span class="d-inline-b wp120">Nº de Motor:</span>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" value="" [(ngModel)]="numMotor" id="numMotor" name="numMotor" autocomplete="off">
+                                    <input type="text" class="form-control" value="" [(ngModel)]="numMotor" id="numMotor" name="numMotor" autocomplete="off" disabled>
                                 </div>
                             </div>
                         </div>
@@ -84,10 +88,10 @@
                                     <span class="d-inline-b wp120">Asignar Usuario:</span>
                                 </div>
                                 <div class="col-md-8">
-                                    <select class="form-control" [(ngModel)]="cboUsuario" id="cboUsuario" name="cboUsuario">
+                                    <select class="form-control" [(ngModel)]="cboUsuario" id="cboUsuario" name="cboUsuario" >
                                     <option value="0">Seleccionar Usuario</option>
                                     <option *ngFor="let us of usuarios"
-                                    value="{{us.usuario}}">{{us.nombre}} {{us.apellido}}
+                                    value="{{us.id}}">{{us.nombre}} {{us.apellido}}
                                   </option>
                                   </select>
                                 </div>
@@ -103,7 +107,7 @@
                                     <span class="d-inline-b wp120">Modelo y Marca:</span>
                                 </div>
                                 <div class="col-md-8">
-                                    <select class="form-control" [(ngModel)]="cboModeloMarca" id="cboModeloMarca" name="cboModeloMarca">
+                                    <select class="form-control" [(ngModel)]="cboModeloMarca" id="cboModeloMarca" name="cboModeloMarca" disabled>
                                         <option value="0">Seleccionar Marca - Modelo</option>
                                         <option *ngFor="let mmd of modMarD"
                                         value="{{mmd.id}}">{{mmd.nomMarca}} - {{mmd.nomModelo}}
@@ -119,7 +123,7 @@
                                     <span class="d-inline-b wp120">Tipo: </span>
                                 </div>
                                 <div class="col-md-8">
-                                    <select class="form-control" [(ngModel)]="cboTipo" id="cboTipo" name="cboTipo">
+                                    <select class="form-control" [(ngModel)]="cboTipo" id="cboTipo" name="cboTipo" disabled>
                                     <option value="0">Seleccionar Tipo</option>
                                     <option *ngFor="let td of tipoD"
                                     value="{{td.id}}">{{td.nomTipoMovil}}

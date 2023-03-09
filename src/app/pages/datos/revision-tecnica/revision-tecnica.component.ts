@@ -11,7 +11,7 @@ export class RevisionTecnicaComponent implements OnInit {
 
   f = new Date();
   fechaEnviar = (this.f.getFullYear() + '-' + this.pad((this.f.getMonth() + 1), 2) + '-' +  this.pad(this.f.getDate(), 2) );
-  
+
   iFechai: string;
   iFechaf: string;
 
@@ -166,7 +166,7 @@ deleteRevTec(id){
       })
       this.dataosRevTecGrilla();
     }
-    
+
 
     }
   )
@@ -179,6 +179,6 @@ deleteRevTec(id){
     this.txtLugarEmitido = '';
     this.txtQuienEmite = '';
     this.txtContaminates = 'SI';
-    this.idEditar = '0'; 
+    this.idEditar = '0';
   }
 }

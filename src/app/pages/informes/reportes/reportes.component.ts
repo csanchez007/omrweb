@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReporteService } from '../../../services/informes/reporte.service';
+import { DatosGeneralesService } from '../../../services/datos/datos-generales.service';
 
 declare function loadTabla(id): any;
 
@@ -16,7 +17,10 @@ export class ReportesComponent implements OnInit {
   detallesReport: any;
   urls: any;
 
-  constructor(private reporteService: ReporteService) {
+  public datosGeneralesPatente: any;
+  public cboPatente: string;
+  constructor(private reporteService: ReporteService,
+              private datosService:DatosGeneralesService) {
     this.limpiar();
 
     this.reporteService.consultPredefinido()
@@ -27,6 +31,12 @@ export class ReportesComponent implements OnInit {
       });
     // LLAMAR TABLAS
       this.llamarTablaReporte();
+
+      this.datosService.consultarPorDatosReporte()
+      .then(
+        async data => {
+          this.datosGeneralesPatente = data;
+        });
   }
 
   ngOnInit(): void {

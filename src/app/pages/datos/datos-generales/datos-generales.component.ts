@@ -6,6 +6,8 @@ import { TipoService } from '../../../services/datos/tipo.service';
 import { ModeloMarcaService } from '../../../services/datos/modelo-marca.service';
 import Swal from 'sweetalert2';
 
+declare var $:any;
+
 @Component({
   selector: 'app-datos-generales',
   templateUrl: './datos-generales.component.html'
@@ -28,6 +30,11 @@ export class DatosGeneralesComponent implements OnInit {
   cboModeloMarca: string;
   cboTipo: string;
 
+  public cboPatente: string;
+  public datosGeneralesPatente: any;
+
+  public isEnabled: boolean;
+
   constructor(private datosService:DatosGeneralesService,
               private usuarioService:UsuariosService,
               private estadoDtos:EstadosDatosService,
@@ -37,6 +44,7 @@ export class DatosGeneralesComponent implements OnInit {
       this.perCirculacion = 0;
       this.cboUsuario = '0';
       this.cboTipo = '0';
+      this.cboPatente = '0';
       this.limpiatCampos();
       this.dataosGralGrilla()
 
@@ -63,6 +71,39 @@ export class DatosGeneralesComponent implements OnInit {
           async data => {
           this.modMarD = data;
       });
+
+      this.datosService.consultarPorDatosMovil()
+      .then(
+        async data => {
+          console.log(data);
+          this.datosGeneralesPatente = data;
+        });
+  }
+
+
+  llamardatosMovil(){
+    let texto = $("#cboPatente").find('option:selected').text();
+this.datosService.consultarPorDatosMovilID(this.cboPatente)
+    .then(
+      async data => {
+        console.log(data);
+        if (data[0] !== null && data['length'] !== 0){
+        this.numMotor = data[0]['numMotor'];
+        this.revTecnica = data[0]['estadoPer'];
+        this.perCirculacion = data[0]['estadoCir'];
+        this.chasis = data[0]['numChasis'];
+        this.cboModeloMarca = data[0]['id'];
+        this.cboTipo =  data[0]['id']
+        this.idEditar =  data[0]['id']
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `Este Móvil con patente '${texto}' no tiene ingresado un permiso de circulación o su revisión técnica` ,
+          });
+          this.limpiatCampos()
+        }
+      });
   }
 
   ngOnInit(): void {
@@ -80,15 +121,11 @@ export class DatosGeneralesComponent implements OnInit {
       return false;
     }
       const datos = {
-        rutUsuario: this.cboUsuario,
-        numPatente: this.txtPatente,
-        numMotor: this.numMotor,
+        idUsuario: this.cboUsuario,
+        idModelMarca: this.cboPatente,
         revTecnica: this.revTecnica,
         perCirculacion: this.perCirculacion,
-        numChasis: this.chasis,
-        modelo_marca: this.cboModeloMarca,
-        tipo_movil: this.cboTipo,
-        estado: '1'
+        estado: 1
       };
       this.datosService.datosGralAdd(datos)
       .then(
@@ -118,16 +155,19 @@ export class DatosGeneralesComponent implements OnInit {
     this.datosService.consultPorDatoGral(id)
     .then(
       data => {
-      //  console.log(data[0]['rutUsuario']);
-        this.cboUsuario = data[0]['rutUsuario'];
-        this.txtPatente = data[0]['numPatente'];
-        this.numMotor = data[0]['numMotor'];
-        this.revTecnica = data[0]['revTecnica'];
-        this.perCirculacion = data[0]['perCirculacion'];
-        this.chasis = data[0]['numChasis'];
-        this.cboModeloMarca = data[0]['nomModelo'];
-        this.cboTipo =  data[0]['tipo']
-        this.idEditar =  data[0]['id']
+       // console.log(data);
+        this.isEnabled = true;
+        this.cboUsuario = data['id'];
+        this.txtPatente = data['numPatente'];
+        this.cboPatente = data['idMarca'];
+        this.numMotor = data['numMotor'];
+        this.revTecnica = data['idEstadoTec'];
+        this.perCirculacion = data['idEstadoCirc'];
+        this.chasis = data['numChasis'];
+        this.cboModeloMarca = data['idMarca'];
+        this.cboTipo =  data['idModelo']
+        this.idEditar =  data['id']
+
       }
     )
     .catch(
@@ -138,8 +178,7 @@ export class DatosGeneralesComponent implements OnInit {
   }
 
   updateDGral(id){
-    if( this.cboUsuario === '0' ||  this.txtPatente === '' ||  this.numMotor === '' ||
-    this.revTecnica === 0 || this.perCirculacion === 0 || this.chasis === ''){
+    if( this.cboUsuario === '0' ||  this.cboPatente === '0'){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -149,15 +188,11 @@ export class DatosGeneralesComponent implements OnInit {
     }
     const datos = {
       id: id,
-      rutUsuario: this.cboUsuario,
-      numPatente: this.txtPatente,
-      numMotor: this.numMotor,
+      idUsuario: this.cboUsuario,
+      idModelMarca: this.cboPatente,
       revTecnica: this.revTecnica,
       perCirculacion: this.perCirculacion,
-      numChasis: this.chasis,
-      modelo_marca: this.cboModeloMarca,
-      tipo_movil: this.cboTipo,
-      estado: '1'
+      estado: 1
     };
     this.datosService.datosGralUpdate(datos)
     .then(

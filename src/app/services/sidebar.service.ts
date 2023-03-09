@@ -17,10 +17,11 @@ export class SidebarService {
       titulo: 'Datos',
       icono: 'mdi mdi-bullseye',
       submenu: [
-        { titulo: 'Datos Generales', url: 'datos-generales' },
+        { titulo: 'Datos Móvil', url: 'datos-movil' },
         { titulo: 'Revisión Técnica', url: 'revision-tec' },
         { titulo: 'Permiso de Circu.', url: 'permiso-circ' },
-        { titulo: 'Otros', url: 'datos-movil' }
+        { titulo: 'Datos Generales', url: 'datos-generales' },
+       /* { titulo: 'Otros', url: 'datos-movil' }*/
       ]
     },
    /* {
@@ -60,9 +61,9 @@ export class SidebarService {
       titulo: 'Documentación',
       icono: 'mdi mdi-file-document',
       submenu: [
-        { titulo: 'Registro móvil', url: 'reportes' },
-        { titulo: 'Registro Conductor', url: 'solucion' },
-        { titulo: 'Equipamiento móvil', url: 'solucion' },
+        { titulo: 'Registro Móvil', url: 'removil' },
+        { titulo: 'Registro Conductor', url: 'reconductor' },
+        { titulo: 'Otros Documentos', url: 'tipodoc' },
       ]
     },
     {

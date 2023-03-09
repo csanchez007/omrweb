@@ -1,0 +1,104 @@
+<!-- =============================================================
+  DOCUMENTOS
+============================================================== -->
+<div class="row mt-1">
+  <!-- column -->
+  <div class="col-lg-12">
+      <div class="card mb-2">
+          <div class="card-body">
+              <p class="mb-2"><strong>Registro Móvil</strong></p>
+              <div class="bloque2 mb-0">
+                  <div class="row linea">
+                    <div class="col-md-4">
+                      <div class="row">
+                          <div class="col-md-4">
+                              <span class="d-inline-b wp120">Nº Patente</span>
+                          </div>
+                          <div class="col-md-8">
+                              <select class="form-control" id="perCirculacion" name="perCirculacion">
+                          <option value="0">Seleccione Nº Patente</option>
+                        </select>
+                          </div>
+                      </div>
+                  </div>
+                    <div class="col-md-4">
+                      <div class="row">
+                          <div class="col-md-4">
+                              <span class="d-inline-b wp120">Descripción</span>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" class="form-control" id="fechaHata"  name="fechaHata" value="">
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="d-inline-b wp120">Documento: </span>
+                        </div>
+                        <div class="col-md-8">
+                          <input type="file" class="form-control" value=""  id="ruta_foto" name="ruta_foto" autocomplete="off">
+                        </div>
+                    </div>
+                  </div>
+                  </div>
+
+                  <div class="row linea">
+                    <div class="col-md-6">
+                      <div class="row">
+                          <div class="col-md-4"></div>
+                          <div class="col-md-8"></div>
+                      </div>
+                  </div>
+
+                      <div class="col-md-6">
+                          <div class="row">
+                              <div class="col-md-4">
+                              </div>
+                              <div class="col-md-8">
+                                  <input id="btnAgregar" type="button" value="Guardar" class="boton" style="float:right">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+<div class="row">
+  <div class="col-12">
+      <div class="card">
+          <div class="card-body">
+              <div class="table-responsive m-t-10">
+                  <table id="tblInfoSolucion" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                      <thead>
+                          <tr>
+                              <th>Nº Patente</th>
+                              <th>Decripción</th>
+                              <th>Documento</th>
+                              <th>Acción</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td>
+                                  <button type="button" class="btn waves-effect waves-light btn-warning" style="float:right">Descargar</button>&nbsp;
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

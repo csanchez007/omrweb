@@ -32,6 +32,11 @@ import { MensajesComponent } from './informes/mensajes/mensajes.component';
 import { NotificacionesComponent } from './informes/notificaciones/notificaciones.component';
 import { StockComponent } from './stock/stock.component';
 import { EquipamientoComponent } from './equipamiento/equipamiento.component';
+import { RegistroMovilComponent } from './documentos/registro-movil/registro-movil.component';
+import { RegistroConductorComponent } from './documentos/registro-conductor/registro-conductor.component';
+import { OtrosDocumentosComponent } from './documentos/otros-documentos/otros-documentos.component';
+import { CombustibleComponent } from './informes/combustible/combustible.component';
+import { MovilComponent } from './datos/movil/movil.component';
 
 
 
@@ -63,6 +68,11 @@ import { EquipamientoComponent } from './equipamiento/equipamiento.component';
     NotificacionesComponent,
     StockComponent,
     EquipamientoComponent,
+    RegistroMovilComponent,
+    RegistroConductorComponent,
+    OtrosDocumentosComponent,
+    CombustibleComponent,
+    MovilComponent,
   ],
   exports: [
     DashboardComponent,

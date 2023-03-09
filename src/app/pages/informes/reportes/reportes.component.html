@@ -9,17 +9,20 @@
                 <p class="mb-2"><strong>Reportes</strong></p>
                 <div class="bloque2 mb-0">
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <span class="d-inline-b wp120">Nº de Unidad</span>
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="hidden" id="txtIdReporte" class="form-control" value="">
-                                    <input type="text" class="form-control" value="" id="txtNumUnidad" name="txtNumUnidad">
-                                </div>
-                            </div>
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-md-4">
+                          <span class="d-inline-b wp120">Nº Patente</span>
                         </div>
+                        <div class="col-md-8">
+                          <select class="form-control" [(ngModel)]="cboPatente" id="cboPatente" name="cboPatente">
+                            <option value="0">Seleccionar Patente</option>
+                            <option *ngFor="let dgp of datosGeneralesPatente"
+                            value="{{dgp.id}}">{{dgp.numPatente}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      </div>
 
                         <div class="col-md-6">
                             <div class="row">
