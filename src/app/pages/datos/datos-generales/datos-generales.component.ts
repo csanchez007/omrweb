@@ -110,7 +110,7 @@ this.datosService.consultarPorDatosMovilID(this.cboPatente)
 
 
   addDGral(){
-    if( this.cboUsuario === ''){
+    if( this.cboUsuario === '0'){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -128,10 +128,18 @@ this.datosService.consultarPorDatosMovilID(this.cboPatente)
       this.datosService.datosGralAdd(datos)
       .then(
         async data => {
-          console.log(data);
-          /*this.dataosGralGrilla();
+          //console.log(data);
+          if (data === 2){
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Este usuario ya tiene asignado este Móvil!',
+            });
+          }else{
+            this.dataosGralGrilla();
           Swal.fire('Se insertaron correctamente los datos');
-          this.limpiatCampos();*/
+          this.limpiatCampos();
+          }
         }
       )
       .catch(
@@ -230,7 +238,7 @@ deletePorDatoGral(id){
 
 limpiatCampos(){
   this.cboUsuario = '0';
-  this.txtPatente = '';
+  this.cboPatente = '0';
   this.numMotor = '';
   this.revTecnica = 0;
   this.perCirculacion = 0;

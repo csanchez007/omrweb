@@ -15,8 +15,7 @@
                               <span class="d-inline-b wp120">Nº Patente</span>
                             </div>
                             <div class="col-md-8">
-                            <input type="text" class="form-control" value="" id="txtPatente"
-                            name="txtFolioDesde" maxlength="18" >
+                            <input type="text" class="form-control" value="" [(ngModel)]="numPatente"id="numPatente" name="numPatente" >
                             </div>
                           </div>
                           </div>
@@ -24,16 +23,16 @@
                           <div class="col-md-6">
                             <div class="row">
                               <div class="col-md-4">
-                              <span class="d-inline-b wp120">Tipo</span>
-                            </div>
-                            <div class="col-md-8">
-                              <select class="form-control" id="cboInsumos"  name="cboInsumos" >
-                                <option value="">Seleccione Tipo</option>
-                                <option value="">Camion</option>
-                                <option value="">Micro o Bus</option>
-                                <option value="">Automovil</option>
-                              </select>
-                            </div>
+                                  <span class="d-inline-b wp120">Tipo: </span>
+                              </div>
+                              <div class="col-md-8">
+                                  <select class="form-control" [(ngModel)]="cboTipo" id="cboTipo" name="cboTipo">
+                                  <option value="0">Seleccionar Tipo</option>
+                                  <option *ngFor="let td of tipoD"
+                                  value="{{td.id}}">{{td.nomTipoMovil}}
+                                </option>
+                                </select>
+                              </div>
                           </div>
                           </div>
                       </div>
@@ -45,12 +44,7 @@
                               <span class="d-inline-b wp120">Modelo y Marca:</span>
                           </div>
                           <div class="col-md-8">
-                          <select class="form-control" id="cboInsumos"  name="cboInsumos" >
-                                <option value="">Seleccione Vigencia</option>
-                                <option value="">Vigente</option>
-                                <option value="">Vencido</option>
-                                <option value="">Por Vencer</option>
-                              </select>
+                            <input type="text" class="form-control" value="" [(ngModel)]="nomMarca"id="nomMarca" name="nomMarca" >
                           </div>
                         </div>
                         </div>
@@ -58,11 +52,10 @@
                         <div class="col-md-6">
                           <div class="row">
                             <div class="col-md-4">
-                            <span class="d-inline-b wp120">Nº Chasis:</span>
+                            <span class="d-inline-b wp120">Modelo:</span>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" class="form-control"  value="" id="txtFolioHasta"
-                            name="txtFolioHasta"  maxlength="18" autocomplete="off">
+                            <input type="text" class="form-control" value="" [(ngModel)]="nomModelo"id="nomModelo" name="nomModelo" >
                           </div>
                         </div>
                         </div>
@@ -72,12 +65,60 @@
                       <div class="col-md-6">
                         <div class="row">
                           <div class="col-md-4">
-                            <span class="d-inline-b wp120">Nº de Motor:</span>
+                            <span class="d-inline-b wp120">Nº Chasis:</span>
+                          </div>
+                          <div class="col-md-8">
+                          <input type="text" class="form-control" value="" [(ngModel)]="numChasis"id="numChasis" name="numChasis" >
+                        </div>
+                      </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-md-4">
+                          <span class="d-inline-b wp120">Nº Motor:</span>
                         </div>
                         <div class="col-md-8">
-                          <input type="text" class="form-control" value="" id="txtCantidad"
-                          name="txtCantidad"  maxlength="6" autocomplete="off">
+                          <input type="text" class="form-control" value="" [(ngModel)]="numMotor"id="numMotor" name="numMotor" >
                         </div>
+                      </div>
+                      </div>
+                  </div>
+
+                  <div class="row linea">
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <span class="d-inline-b wp120">Año:</span>
+                        </div>
+                        <div class="col-md-8">
+                        <input type="text" class="form-control" value="" [(ngModel)]="ano"id="ano" name="ano" >
+                      </div>
+                    </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-4">
+                            <span class="d-inline-b wp120">Estado:</span>
+                        </div>
+                        <div class="col-md-8">
+                        <select class="form-control" [(ngModel)]="estado" id="estado" name="estado">
+                        <option value="0">Seleccione Estado</option>
+                        <option *ngFor="let ed of estDato"
+                        value="{{ed.id}}">{{ed.nomEstado}}
+                      </option>
+                      </select>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                    <div class="row linea">
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-md-4"></div>
+                        <div class="col-md-8"></div>
                       </div>
                       </div>
 
