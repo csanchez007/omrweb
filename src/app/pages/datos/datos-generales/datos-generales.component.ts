@@ -94,7 +94,6 @@ this.datosService.consultarPorDatosMovilID(this.cboPatente)
         this.chasis = data[0]['numChasis'];
         this.cboModeloMarca = data[0]['id'];
         this.cboTipo =  data[0]['id']
-        this.idEditar =  data[0]['id']
         }else{
           Swal.fire({
             icon: 'error',
@@ -111,8 +110,7 @@ this.datosService.consultarPorDatosMovilID(this.cboPatente)
 
 
   addDGral(){
-    if( this.cboUsuario === '' ||  this.txtPatente === '' ||  this.numMotor === '' ||
-    this.revTecnica === 0 || this.perCirculacion === 0 || this.chasis === ''){
+    if( this.cboUsuario === ''){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -131,9 +129,9 @@ this.datosService.consultarPorDatosMovilID(this.cboPatente)
       .then(
         async data => {
           console.log(data);
-          this.dataosGralGrilla();
+          /*this.dataosGralGrilla();
           Swal.fire('Se insertaron correctamente los datos');
-          this.limpiatCampos();
+          this.limpiatCampos();*/
         }
       )
       .catch(
