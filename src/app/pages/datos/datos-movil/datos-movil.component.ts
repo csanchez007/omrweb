@@ -90,10 +90,11 @@ export class DatosMovilComponent implements OnInit {
               title: 'Oops...',
               text: `Este Nº ${this.numPatente} de patente ya esta ingresada!`,
             });
+            this.limpiarCampos();
           }else{
             this.dataosMovilGrilla();
           Swal.fire('Se insertaron correctamente los datos');
-          this.limpiatCampos();
+          this.limpiarCampos();
           }
         }
       )
@@ -151,7 +152,7 @@ export class DatosMovilComponent implements OnInit {
         async data => {
           this.dataosMovilGrilla();
           Swal.fire('Se actualizaron correctamente los datos');
-          this.limpiatCampos();
+          this.limpiarCampos();
         }
       )
       .catch(
@@ -180,7 +181,7 @@ export class DatosMovilComponent implements OnInit {
   }
 
 
-  limpiatCampos(){
+  limpiarCampos(){
     this.numPatente = '';
     this.cboTipo = '0';
     this.nomMarca= '';

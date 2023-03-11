@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DatosGeneralesService } from '../../../services/datos/datos-generales.service';
 import { PermisoCirculacionService } from '../../../services/datos/permiso-circulacion.service';
 import Swal from 'sweetalert2';
+
+declare var $:any;
+
 @Component({
   selector: 'app-permiso-circulacion',
   templateUrl: './permiso-circulacion.component.html'
@@ -10,7 +13,7 @@ export class PermisoCirculacionComponent implements OnInit {
 
   f = new Date();
   fechaEnviar = (this.f.getFullYear() + '-' + this.pad((this.f.getMonth() + 1), 2) + '-' +  this.pad(this.f.getDate(), 2) );
-  
+
   iFechai: string;
   iFechaf: string;
 
@@ -31,9 +34,11 @@ export class PermisoCirculacionComponent implements OnInit {
     this.iFechai = this.fechaEnviar;
     this.iFechaf = this.fechaEnviar;
     this.limpiarCampos()
-    this.datosService.consultarPorDatosReporte()
+
+    this.datosService.consultarPorDatosMovil()
     .then(
       async data => {
+        console.log(data);
         this.datosGeneralesPatente = data;
       });
 
@@ -58,6 +63,7 @@ export class PermisoCirculacionComponent implements OnInit {
   }
 
   addperCirnica(){
+    let texto = $("#cboPatente").find('option:selected').text();
     if( this.cboPatente === '0' ||  this.txtObservaciones === '' ||
     this.txtLugarEmitido === '' || this.txtQuienEmite === '' || this.selloVerde === '0'){
       Swal.fire({
@@ -80,11 +86,20 @@ export class PermisoCirculacionComponent implements OnInit {
       this.perCirservice.perCirAdd(datos)
       .then(
         async data => {
+          if (data === 2){
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: `Este Móvil con patente '${texto}' ya esta ingresado` ,
+            });
+            this.limpiarCampos();
+          }else{
           console.log(data);
           this.dataosperCirGrilla();
           Swal.fire('Se insertaron correctamente los datos');
           this.limpiarCampos();
         }
+      }
       )
       .catch(
         error => {
@@ -165,7 +180,7 @@ deleteperCir(id){
       })
       this.dataosperCirGrilla();
     }
-    
+
 
     }
   )
@@ -178,6 +193,6 @@ deleteperCir(id){
     this.txtLugarEmitido = '';
     this.txtQuienEmite = '';
     this.selloVerde = '';
-    this.idEditar = '0'; 
+    this.idEditar = '0';
   }
 }

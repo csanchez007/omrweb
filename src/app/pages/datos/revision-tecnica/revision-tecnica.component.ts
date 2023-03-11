@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DatosGeneralesService } from '../../../services/datos/datos-generales.service';
 import { RevisionTecnicaService } from '../../../services/datos/revision-tecnica.service';
 import Swal from 'sweetalert2';
+declare var $:any;
 
 @Component({
   selector: 'app-revision-tecnica',
@@ -32,9 +33,11 @@ export class RevisionTecnicaComponent implements OnInit {
     this.iFechai = this.fechaEnviar;
     this.iFechaf = this.fechaEnviar;
     this.limpiarCampos()
-    this.datosService.consultarPorDatosReporte()
+
+    this.datosService.consultarPorDatosMovil()
     .then(
       async data => {
+        console.log(data);
         this.datosGeneralesPatente = data;
       });
 
@@ -59,6 +62,7 @@ export class RevisionTecnicaComponent implements OnInit {
   }
 
   addRevTecnica(){
+    let texto = $("#cboPatente").find('option:selected').text();
     if( this.cboPatente === '0' ||  this.txtObservaciones === '' ||
     this.txtLugarEmitido === '' || this.txtQuienEmite === '' || this.txtContaminates === '0'){
       Swal.fire({
@@ -81,10 +85,19 @@ export class RevisionTecnicaComponent implements OnInit {
       this.revTecservice.revTecnicaAdd(datos)
       .then(
         async data => {
-          console.log(data);
+
+          if (data === 2){
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: `Este Móvil con patente '${texto}' ya esta ingresado` ,
+            });
+            this.limpiarCampos();
+          }else{
           this.dataosRevTecGrilla();
           Swal.fire('Se insertaron correctamente los datos');
           this.limpiarCampos();
+          }
         }
       )
       .catch(
@@ -99,7 +112,7 @@ export class RevisionTecnicaComponent implements OnInit {
     this.revTecservice.consultPorRevTec(id)
     .then(
       data => {
-        this.cboPatente = data[0]['numPatente'];
+        this.cboPatente = data[0]['id_numPatente'];
         this.iFechai = data[0]['fchDesde'];
         this.iFechaf = data[0]['fchHasta'];
         this.txtObservaciones = data[0]['observaciones'];
@@ -165,6 +178,7 @@ deleteRevTec(id){
         text: 'Se elimino el dato seleccionado!'
       })
       this.dataosRevTecGrilla();
+      this.limpiarCampos()
     }
 
 
