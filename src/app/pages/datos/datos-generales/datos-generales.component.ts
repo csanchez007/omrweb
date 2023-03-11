@@ -83,7 +83,7 @@ export class DatosGeneralesComponent implements OnInit {
 
   llamardatosMovil(){
     let texto = $("#cboPatente").find('option:selected').text();
-this.datosService.consultarPorDatosMovilID(this.cboPatente)
+    this.datosService.consultarPorDatosMovilID(this.cboPatente)
     .then(
       async data => {
         console.log(data);
@@ -203,7 +203,6 @@ this.datosService.consultarPorDatosMovilID(this.cboPatente)
     this.datosService.datosGralUpdate(datos)
     .then(
       async data => {
-        console.log(data);
         this.dataosGralGrilla();
         Swal.fire('Se actualizaron correctamente los datos');
         this.limpiatCampos();

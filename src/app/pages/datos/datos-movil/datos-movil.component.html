@@ -12,7 +12,7 @@
                           <div class="col-md-6">
                             <div class="row">
                               <div class="col-md-4">
-                              <span class="d-inline-b wp120">Nº Patente</span>
+                              <span class="d-inline-b wp120">Nº Patente: </span>
                             </div>
                             <div class="col-md-8">
                             <input type="text" class="form-control" value="" [(ngModel)]="numPatente"id="numPatente" name="numPatente" >
@@ -41,7 +41,7 @@
                         <div class="col-md-6">
                           <div class="row">
                             <div class="col-md-4">
-                              <span class="d-inline-b wp120">Modelo y Marca:</span>
+                              <span class="d-inline-b wp120">Marca:</span>
                           </div>
                           <div class="col-md-8">
                             <input type="text" class="form-control" value="" [(ngModel)]="nomMarca"id="nomMarca" name="nomMarca" >
@@ -127,8 +127,9 @@
                           <div class="col-md-4">
                           </div>
                           <div class="col-md-8">
-                            <input id="btnAgregar" type="button"  value="Agregar" class="boton" style="float:right">
-                          </div>
+                            <input id="btnAgregar" *ngIf="idEditar == '0'" type="button" (click)="addDMovil()" value="Agregar" class="boton" style="float:right">
+                            <input id="btnAgregar" *ngIf="idEditar != '0'" type="button" (click)="editDMovil(idEditar)" value="Guardar" class="boton" style="float:right">
+                        </div>
                         </div>
                       </div>
                     </div>
@@ -159,40 +160,17 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>BR-003</td>
-                                                <td><strong>Auto</strong></td>
-                                                <td><strong>Chevrolet Onix</strong></td>
-                                                <td>12321456789</td>
-                                                <td>12321456789</td>
+                                          <tr *ngFor="let datos of dtMoviles">
+                                                <td>{{datos.numPatente}}</td>
+                                                <td><strong>{{datos.nomTipoMovil}}</strong></td>
+                                                <td><strong>{{datos.nomMarca}} {{datos.nomModelo}}</strong></td>
+                                                <td>{{datos.numChasis}}</td>
+                                                <td>{{datos.numMotor}}</td>
                                                 <td>
-                                                <button type="button" class="btn waves-effect waves-light btn-warning">Editar</button>&nbsp;
-                                                 <button type="button" class="btn waves-effect waves-light btn-danger">Eliminar</button>
+                                                <button type="button" (click)="llamardatosMovil(datos.id)" class="btn waves-effect waves-light btn-warning">Editar</button>&nbsp;
+                                                <button type="button" (click)="deleteDatoMovill(datos.id)"  class="btn waves-effect waves-light btn-danger">Eliminar</button>
                                                  </td>
                                             </tr>
-                                            <tr>
-                                                <td>BR-004</td>
-                                                <td>Camion</td>
-                                                <td>Mercedes</td>
-                                                <td>12321456789</td>
-                                                <td>12321456789</td>
-                                                <td>
-                                                <button type="button" class="btn waves-effect waves-light btn-warning">Editar</button>&nbsp;
-                                                 <button type="button" class="btn waves-effect waves-light btn-danger">Eliminar</button>
-                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>BR-005</td>
-                                                <td>Auto</td>
-                                                <td>Fiat 500<</td>
-                                                <td>12321456789</td>
-                                                <td>12321456789</td>
-                                                <td>
-                                                <button type="button" class="btn waves-effect waves-light btn-warning">Editar</button>&nbsp;
-                                                 <button type="button" class="btn waves-effect waves-light btn-danger">Eliminar</button>
-                                                 </td>
-                                            </tr>
-
                                         </tbody>
                                     </table>
                                 </div>
