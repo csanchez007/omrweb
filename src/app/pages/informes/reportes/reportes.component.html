@@ -15,7 +15,7 @@
                           <span class="d-inline-b wp120">Nº Patente</span>
                         </div>
                         <div class="col-md-8">
-                          <select class="form-control" [(ngModel)]="cboPatente" id="cboPatente" name="cboPatente">
+                          <select class="form-control" [(ngModel)]="cboPatente" id="cboPatente" name="cboPatente" disabled>
                             <option value="0">Seleccionar Patente</option>
                             <option *ngFor="let dgp of datosGeneralesPatente"
                             value="{{dgp.id}}">{{dgp.numPatente}}</option>
@@ -30,7 +30,7 @@
                                     <span class="d-inline-b wp120">Predefinido</span>
                                 </div>
                                 <div class="col-md-8">
-                                    <select class="form-control" id="cboPredefinido" name="cboPredefinido">
+                                    <select class="form-control" [(ngModel)]="cboPredefinido" id="cboPredefinido" name="cboPredefinido">
                                 <option value="">Seleccione Predefinido</option>
                                 <option *ngFor="let pre of predefinido;" value="{{pre.id}}">{{pre.descripcion}}<option>
                               </select>
@@ -42,40 +42,35 @@
 
                     <div class="row linea">
                         <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <span class="d-inline-b wp120">Fecha Reporte</span>
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="date" class="form-control" id="fechaReporte" [(ngModel)]="fechaReporte" name="fechaReporte" value="">
-                                </div>
+                          <div class="row">
+                            <div class="col-md-4">
+                                <span class="d-inline-b wp120">Solucionado</span>
                             </div>
+                            <div class="col-md-8">
+                                <select class="form-control" id="cboSolucionado" [(ngModel)]="cboSolucionado" name="cboSolucionado" disabled>
+                            <option value="0">No</option>
+                          </select>
+                            </div>
+                        </div>
                         </div>
 
                         <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <span class="d-inline-b wp120">Solucionado</span>
-                                </div>
-                                <div class="col-md-8">
-                                    <select class="form-control" id="cboSolucionado" name="cboSolucionado">
-                                <option value="0">No</option>
-                                <option value="1">Si</option>
-                              </select>
-                                </div>
+                          <div class="row">
+                            <div class="col-md-4">
+                                <span class="d-inline-b wp120">Descripción</span>
                             </div>
+                            <div class="col-md-8">
+                                <textarea class="form-control" [(ngModel)]="txtDescripcion" name="txtDescripción" id="txtDescripción" rows="5"></textarea>
+                            </div>
+                        </div>
                         </div>
                     </div>
 
                     <div class="row linea">
                         <div class="col-md-6">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <span class="d-inline-b wp120">Descripción</span>
-                                </div>
-                                <div class="col-md-8">
-                                    <textarea class="form-control" id="txtDescripción" rows="5"></textarea>
-                                </div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8"></div>
                             </div>
                         </div>
 
@@ -84,7 +79,7 @@
                                 <div class="col-md-4">
                                 </div>
                                 <div class="col-md-8">
-                                    <input id="btnAgregar" type="button" onclick="addUserOrUpdate();" value="Guardar" class="boton" style="float:right">
+                                    <input id="btnAgregar" (click)="updateReporte(idEditar)"  [disabled]="isEnabled" type="button" value="Guardar" class="boton" style="float:right">
                                 </div>
                             </div>
                         </div>
@@ -119,14 +114,14 @@
                         <tbody>
                             <tr *ngFor="let detalle of detallesReport">
                                 <td>{{detalle.Usuario}}</td>
-                                <td>{{detalle.unidad}}</td>
+                                <td>{{detalle.numPatente}}</td>
                                 <td>{{detalle.descripcion}}</td>
                                 <td>{{detalle.solucions}}</td>
                                 <td>{{detalle.fecha}}</td>
                                 <td>{{detalle.est}}</td>
                                 <td>
-                                    <button type="button" class="btn waves-effect waves-light btn-warning">Editar</button>&nbsp;
-                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalReporte" (click)="llamarAlbumReporte(detalle.id)">Ver Fotos</button>
+                                    <button type="button" class="btn waves-effect waves-light btn-warning" (click)="llamarReporteID(detalle.id)">Editar</button>&nbsp;
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalReporte" (click)="llamarAlbumReporte(detalle.id, detalle.descripcion)">Ver Fotos</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -149,41 +144,27 @@
                 <div class="row el-element-overlay">
                     <div class="col-md-12">
                         <h4 class="card-title">Fotos del reporte</h4>
-                        <h6 class="card-subtitle m-b-20 text-muted">you can make gallery like this</h6>
+                        <h6 class="card-subtitle m-b-20 text-muted">{{DescripcionRS}}</h6>
                     </div>
-                    <div *ngFor="let url of urls; index as i" class="col-lg-3 col-md-6">
+                    <div  *ngFor="let url of urls; index as i" class="col-lg-3 col-md-6">
                         <div class="card">
                             <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"> <img src="{{url.rutaFoto}}" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="el-info">
-                                            <li><a class="btn default btn-outline image-popup-vertical-fit" href="javascript:void(0);" style="background-image: url('{{url.rutaFoto}}')"><i class="icon-magnifier"></i></a></li>
+                              <div class="el-card-avatar el-overlay-1"> <img [src]="url.rutaFoto" alt="user" />
+                                  <div class="el-overlay">
+                                      <ul class="el-info">
+                                          <li><a class="btn default btn-outline image-popup-vertical-fit" [href]="url.rutaFoto"><i class="icon-magnifier"></i></a></li>
                                         </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"> <img src="../assets/images/big/img1.jpg" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="el-info">
-                                            <li><a class="btn default btn-outline image-popup-vertical-fit" href="../assets/images/users/1.jpg"><i class="icon-magnifier"></i></a></li>
-                                            <li><a class="btn default btn-outline" href="javascript:void(0);"><i class="icon-link"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="el-card-content">
-                                    <h3 class="box-title">Project title</h3> <small>subtitle of project</small>
-                                    <br/> </div>
-                            </div>
-                        </div>
-                    </div>
-
+                                  </div>
+                              </div>
+                              <div class="el-card-content">
+                                  <h3 class="box-title">Project title</h3> <small>subtitle of project</small>
+                                  <br/> </div>
+                          </div>
+                      </div>
+                  </div>
                 </div>
+
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

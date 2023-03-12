@@ -35,6 +35,7 @@ export class DatosGeneralesComponent implements OnInit {
 
   public isEnabled: boolean;
 
+
   constructor(private datosService:DatosGeneralesService,
               private usuarioService:UsuariosService,
               private estadoDtos:EstadosDatosService,

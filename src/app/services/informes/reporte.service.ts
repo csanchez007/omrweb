@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class ReporteService {
 
   // user = localStorage.getItem('usuario');
-  user = '1-9';
+  user = '310';
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -80,6 +80,25 @@ export class ReporteService {
               console.log(err);
             }
           );
+      }
+    );
+  }
+
+  // ==============================================================
+  // UPDATE REV REOIRTE
+  // ==============================================================
+  reporteUpdate(datos) {
+    const body = JSON.stringify(datos);
+    return new Promise(
+      resolve => {
+        this.http.post(URL_SERVIS + 'omrservice/servicios/servicios.php?updateReporte', body)
+          .subscribe(
+            data => {
+              resolve(data);
+            },
+            err => {
+              console.log(err);
+            });
       }
     );
   }

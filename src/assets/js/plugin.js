@@ -1,4 +1,12 @@
 function loadTabla(id) {
+  var table =  $('#'+id).DataTable();
+
+  //clear datatable
+  table.clear().draw();
+
+  //destroy datatable
+  table.destroy()
+
   setTimeout(function() { cargarTabla(id); }, 1000);
 }
 
