@@ -15,7 +15,7 @@ export class StockService {
   consultTodoStock(tipo) {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios/stock.php?tipo=' + tipo + '&getAllStock')
+        this.http.get(URL_SERVIS + 'servicios/stock.php?tipo=' + tipo + '&getAllStock')
           .subscribe(
             data => {
               resolve(data);
@@ -35,7 +35,7 @@ export class StockService {
     const body = JSON.stringify(datos);
     return new Promise(
       resolve => {
-        this.http.post(URL_SERVIS + 'omrservice/servicios/stock.php?newstock', body)
+        this.http.post(URL_SERVIS + 'servicios/stock.php?newstock', body)
           .subscribe(
             data => {
               resolve(data);
@@ -52,7 +52,7 @@ export class StockService {
   consultPorStock(id, tipo) {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + 'omrservice/servicios/stock.php?id=' + id +'&tipo=' + tipo + '&consultaPorStock')
+        this.http.get(URL_SERVIS + 'servicios/stock.php?id=' + id +'&tipo=' + tipo + '&consultaPorStock')
           .subscribe(
             data => {
               resolve(data);
@@ -71,7 +71,7 @@ export class StockService {
     const body = JSON.stringify(datos);
     return new Promise(
       resolve => {
-        this.http.post(URL_SERVIS + 'omrservice/servicios/stock.php?upadateStock', body)
+        this.http.post(URL_SERVIS + 'servicios/stock.php?upadateStock', body)
           .subscribe(
             data => {
               resolve(data);
@@ -88,7 +88,7 @@ export class StockService {
   deleteStock(id) {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + 'omrservice/servicios/stock.php?id=' + id + '&deleteStock')
+        this.http.get(URL_SERVIS + 'servicios/stock.php?id=' + id + '&deleteStock')
           .subscribe(
             data => {
               resolve(data);

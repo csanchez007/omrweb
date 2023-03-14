@@ -12,7 +12,7 @@ export class EstadosDatosService {
   consultarEstadosDatos() {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios//servicios.php?getAllEstadoD')
+        this.http.get(URL_SERVIS + 'servicios//servicios.php?getAllEstadoD')
           .subscribe(
             data => {
               resolve(data);

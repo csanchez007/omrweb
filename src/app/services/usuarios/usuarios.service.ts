@@ -16,7 +16,7 @@ export class UsuariosService {
   consultarAllUser() {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios/usuarios.php?getAll')
+        this.http.get(URL_SERVIS + 'servicios/usuarios.php?getAll')
           .subscribe(
             data => {
               resolve(data);

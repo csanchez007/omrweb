@@ -15,7 +15,7 @@ export class PermisoCirculacionService {
   consultarPerCir() {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios/per_circulacion.php?getAllPerCir')
+        this.http.get(URL_SERVIS + 'servicios/per_circulacion.php?getAllPerCir')
           .subscribe(
             data => {
               resolve(data);
@@ -35,7 +35,7 @@ export class PermisoCirculacionService {
     const body = JSON.stringify(datos);
     return new Promise(
       resolve => {
-        this.http.post(URL_SERVIS + 'omrservice/servicios/per_circulacion.php?addDatosPerCir', body)
+        this.http.post(URL_SERVIS + 'servicios/per_circulacion.php?addDatosPerCir', body)
           .subscribe(
             data => {
               resolve(data);
@@ -53,7 +53,7 @@ export class PermisoCirculacionService {
   consultPorPerCir(id) {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + 'omrservice/servicios/per_circulacion.php?id=' + id + '&getOnePerCir')
+        this.http.get(URL_SERVIS + 'servicios/per_circulacion.php?id=' + id + '&getOnePerCir')
           .subscribe(
             data => {
               resolve(data);
@@ -65,7 +65,7 @@ export class PermisoCirculacionService {
       }
     );
   }
-   
+
   // ==============================================================
   // UPDATE REV TECNICA
   // ==============================================================
@@ -73,7 +73,7 @@ export class PermisoCirculacionService {
     const body = JSON.stringify(datos);
     return new Promise(
       resolve => {
-        this.http.post(URL_SERVIS + 'omrservice/servicios/per_circulacion.php?updatePerCir', body)
+        this.http.post(URL_SERVIS + 'servicios/per_circulacion.php?updatePerCir', body)
           .subscribe(
             data => {
               resolve(data);
@@ -90,7 +90,7 @@ export class PermisoCirculacionService {
   deletePerCir(id) {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + 'omrservice/servicios/per_circulacion.php?id=' + id + '&deletePerCir')
+        this.http.get(URL_SERVIS + 'servicios/per_circulacion.php?id=' + id + '&deletePerCir')
           .subscribe(
             data => {
               resolve(data);

@@ -16,7 +16,7 @@ export class DatosGeneralesService {
   consultarPorDatosReporte() {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios/datos.php?getAllDatos')
+        this.http.get(URL_SERVIS + 'servicios/datos.php?getAllDatos')
           .subscribe(
             data => {
               resolve(data);
@@ -35,7 +35,7 @@ export class DatosGeneralesService {
   consultarPorDatosMovil() {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios/datos.php?getAllDatosMovil')
+        this.http.get(URL_SERVIS + 'servicios/datos.php?getAllDatosMovil')
           .subscribe(
             data => {
               resolve(data);
@@ -53,7 +53,7 @@ export class DatosGeneralesService {
   consultarPorDatosMovilID(id) {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios/datos.php?id=' + id + '&getAllDatosMovilId')
+        this.http.get(URL_SERVIS + 'servicios/datos.php?id=' + id + '&getAllDatosMovilId')
           .subscribe(
             data => {
               resolve(data);
@@ -72,7 +72,7 @@ export class DatosGeneralesService {
     const body = JSON.stringify(datos);
     return new Promise(
       resolve => {
-        this.http.post(URL_SERVIS + 'omrservice/servicios/datos.php?addDatos', body)
+        this.http.post(URL_SERVIS + 'servicios/datos.php?addDatos', body)
           .subscribe(
             data => {
               resolve(data);
@@ -89,7 +89,7 @@ export class DatosGeneralesService {
   consultPorDatoGral(id) {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + 'omrservice/servicios/datos.php?id=' + id + '&getOneDatosGral')
+        this.http.get(URL_SERVIS + 'servicios/datos.php?id=' + id + '&getOneDatosGral')
           .subscribe(
             data => {
               resolve(data);
@@ -109,7 +109,7 @@ export class DatosGeneralesService {
     const body = JSON.stringify(datos);
     return new Promise(
       resolve => {
-        this.http.post(URL_SERVIS + 'omrservice/servicios/datos.php?updateDatos', body)
+        this.http.post(URL_SERVIS + 'servicios/datos.php?updateDatos', body)
           .subscribe(
             data => {
               resolve(data);
@@ -126,7 +126,7 @@ export class DatosGeneralesService {
   deletePorDatoGral(id) {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + 'omrservice/servicios/datos.php?id=' + id + '&deleteDatosGral')
+        this.http.get(URL_SERVIS + 'servicios/datos.php?id=' + id + '&deleteDatosGral')
           .subscribe(
             data => {
               resolve(data);

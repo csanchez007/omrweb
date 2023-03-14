@@ -16,7 +16,7 @@ export class DatosMovilService {
   consultPorDatoMovil() {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + 'omrservice/servicios/datos_movil.php?getAllDatosMovil')
+        this.http.get(URL_SERVIS + 'servicios/datos_movil.php?getAllDatosMovil')
           .subscribe(
             data => {
               resolve(data);
@@ -32,7 +32,7 @@ export class DatosMovilService {
     const body = JSON.stringify(datos);
     return new Promise(
       resolve => {
-        this.http.post(URL_SERVIS + 'omrservice/servicios/datos_movil.php?addDatosMovil', body)
+        this.http.post(URL_SERVIS + 'servicios/datos_movil.php?addDatosMovil', body)
           .subscribe(
             data => {
               resolve(data);
@@ -50,7 +50,7 @@ export class DatosMovilService {
   consultarDatosMovilID(id) {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios/datos_movil.php?id=' + id + '&getAllDatosMovilId')
+        this.http.get(URL_SERVIS + 'servicios/datos_movil.php?id=' + id + '&getAllDatosMovilId')
           .subscribe(
             data => {
               resolve(data);
@@ -70,7 +70,7 @@ export class DatosMovilService {
     const body = JSON.stringify(datos);
     return new Promise(
       resolve => {
-        this.http.post(URL_SERVIS + 'omrservice/servicios/datos_movil.php?updateDatos', body)
+        this.http.post(URL_SERVIS + 'servicios/datos_movil.php?updateDatos', body)
           .subscribe(
             data => {
               resolve(data);
@@ -88,7 +88,7 @@ export class DatosMovilService {
   deletePorDatoMovil(id) {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + 'omrservice/servicios/datos_movil.php?id=' + id + '&deleteDatosMovil')
+        this.http.get(URL_SERVIS + 'servicios/datos_movil.php?id=' + id + '&deleteDatosMovil')
           .subscribe(
             data => {
               resolve(data);

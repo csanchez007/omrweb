@@ -13,7 +13,7 @@ export class ModeloMarcaService {
   consultarModeloMarcaDatos() {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios//servicios.php?getAllMMD')
+        this.http.get(URL_SERVIS + 'servicios//servicios.php?getAllMMD')
           .subscribe(
             data => {
               resolve(data);

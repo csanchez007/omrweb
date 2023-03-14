@@ -15,7 +15,7 @@ export class RevisionTecnicaService {
   consultarRevTecnica() {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios/rev_tecnica.php?getAllrevTec')
+        this.http.get(URL_SERVIS + 'servicios/rev_tecnica.php?getAllrevTec')
           .subscribe(
             data => {
               resolve(data);
@@ -35,7 +35,7 @@ export class RevisionTecnicaService {
     const body = JSON.stringify(datos);
     return new Promise(
       resolve => {
-        this.http.post(URL_SERVIS + 'omrservice/servicios/rev_tecnica.php?addDatosRevTec', body)
+        this.http.post(URL_SERVIS + 'servicios/rev_tecnica.php?addDatosRevTec', body)
           .subscribe(
             data => {
               resolve(data);
@@ -53,7 +53,7 @@ export class RevisionTecnicaService {
   consultPorRevTec(id) {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + 'omrservice/servicios/rev_tecnica.php?id=' + id + '&getOneRevTec')
+        this.http.get(URL_SERVIS + 'servicios/rev_tecnica.php?id=' + id + '&getOneRevTec')
           .subscribe(
             data => {
               resolve(data);
@@ -65,7 +65,7 @@ export class RevisionTecnicaService {
       }
     );
   }
-   
+
   // ==============================================================
   // UPDATE REV TECNICA
   // ==============================================================
@@ -73,7 +73,7 @@ export class RevisionTecnicaService {
     const body = JSON.stringify(datos);
     return new Promise(
       resolve => {
-        this.http.post(URL_SERVIS + 'omrservice/servicios/rev_tecnica.php?updateRevTec', body)
+        this.http.post(URL_SERVIS + 'servicios/rev_tecnica.php?updateRevTec', body)
           .subscribe(
             data => {
               resolve(data);
@@ -90,7 +90,7 @@ export class RevisionTecnicaService {
   deleteRevTec(id) {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + 'omrservice/servicios/rev_tecnica.php?id=' + id + '&deleteRevTec')
+        this.http.get(URL_SERVIS + 'servicios/rev_tecnica.php?id=' + id + '&deleteRevTec')
           .subscribe(
             data => {
               resolve(data);

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReporteService } from '../../../services/informes/reporte.service';
+import Swal from 'sweetalert2';
 
 declare function loadTabla(id): any;
 declare var $:any;
@@ -29,6 +30,10 @@ export class SolucionComponent implements OnInit {
   public definidoSelctId: number;
   public definidoSelectText: string;
 
+  public DescripcionRS: string
+
+  public idEditar = '0';
+
   constructor(private reporteService: ReporteService) {
     this.cboPredefinido = "0";
     this.definidoSelctId = 0;
@@ -55,7 +60,7 @@ export class SolucionComponent implements OnInit {
     .then(
       async data => {
          console.log(data);
-         this.txtNumUnidad = data[0]['unidad'];
+         this.txtNumUnidad = data['numPatente'];
       });
   }
   // ==============================================================
@@ -83,24 +88,25 @@ export class SolucionComponent implements OnInit {
     this.reporteService.consultarPorSolucion(idSoluion)
     .then(
       async data => {
-        // console.log(data[0]['idReporte']);
+
          this.txtDescripcion = data[0]['descripcion'];
-         this.llamarReportePorIdSolucionados(data[0]['idReporte']);
+         this.fechaDesde = data[0]['desde'];
+         this.fechaHata = data[0]['hasta'];
+         this.idEditar = data[0]['id'];
+         this.llamarReportePorIdSolucionados(data[0]['idReporte'])
+
       });
   }
-  // ==============================================================
-  // CONSULTA UNO DE LOS REPORTES YA SOLUCIONADO
-  // ==============================================================
+  // ================================================================
+  // CONSULTA UNO DE LOS REPORTES YA SOLUCIONADO OBTENGO LA PANTENTE
+  // ================================================================
   llamarReportePorIdSolucionados(idReporte){
     console.log(idReporte);
     this.reporteService.consultarPorReporte(idReporte)
     .then(
       async data => {
          console.log(data);
-        this.definidoSelctId = data[0]['id'];
-        this.definidoSelectText = data[0]['descripcion'];
-        this.cboPredefinido = data[0]['id'];
-        $("#cboPredefinido").prop( "disabled", true );
+        this.txtNumUnidad = data['numPatente'];
       });
   }
   limpiar() {
@@ -108,50 +114,55 @@ export class SolucionComponent implements OnInit {
     this.fechaDesde = f.getFullYear() + '-' + this.pad((f.getMonth() + 1), 2) + '-' +  this.pad(f.getDate(), 2);
     this.fechaHata = f.getFullYear() + '-' + this.pad((f.getMonth() + 1), 2) + '-' +  this.pad(f.getDate(), 2);
     this.txtNumUnidad= '';
-    this.descripcion = '';
-    this.cboPredefinido = "0";
-    this.definidoSelctId = 0;
+    this.txtDescripcion=''
     $("#cboPredefinido").prop( "disabled", false );
   }
 
-  llamarAlbumReporte(idReporte) {
-    this.reporteService.consultarReporteUrl(idReporte)
+  llamarAlbumSolucion(idReporte, descRS) {
+    this.reporteService.consultarSolucionadoUrl(idReporte)
     .then(
       async data => {
         console.log(data);
         // tslint:disable-next-line:no-string-literal
         this.urls = data;
+        this.DescripcionRS = descRS
       });
   }
 
 
   // ==============================================================
-  //  AGREGAR SOLUCIÓN
+  //  EDITAR SOLUCIÓN
   // ==============================================================
-  async SolucionAdd() {
-
-    this.reporteService.enviarSolucionAdd(
-     // this.usuario,
-      this.idReporte,
-      this.fechaDesde,
-      this.fechaHata,
-      this.descripcion
-      //this.urlImage,
-      //this.post.coords
-      )
+  solucionEdit(){
+    if( this.txtDescripcion === '' ){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Existen campos vacios!',
+      });
+      return false;
+    }
+      const datos = {
+        descripcion: this.txtDescripcion,
+        desde: this.fechaDesde,
+        hasta: this.fechaHata,
+        id: this.idEditar,
+      };
+      this.reporteService.solucionEditData(datos)
       .then(
         async data => {
           console.log(data);
-          // this.enviarNotReporte(this.reporte);
+          this.llamarTablaSolucion();
+          Swal.fire('Se actualizarón correctamente los datos');
           this.limpiar();
-          //this.irSolucionFoto();
         }
       )
       .catch(
         error => {
-          console.log(error + 'no se pudo insertar datos');
+          console.log(error + 'no se pudo actualizar los datos');
         }
       );
+
   }
 
 }

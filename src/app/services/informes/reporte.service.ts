@@ -19,7 +19,7 @@ export class ReporteService {
   consultPredefinido() {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios/usuarios.php?consultaPredefinido')
+        this.http.get(URL_SERVIS + 'servicios/usuarios.php?consultaPredefinido')
           .subscribe(
             data => {
               resolve(data);
@@ -34,7 +34,7 @@ export class ReporteService {
   consultServis(){
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios/servicios.php?user=' + this.user + '&getAllServicios')
+        this.http.get(URL_SERVIS + 'servicios/servicios.php?user=' + this.user + '&getAllServicios')
           .subscribe(
             data => {
               resolve(data);
@@ -52,7 +52,25 @@ export class ReporteService {
   consultarReporteUrl(idReporte) {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios/servicios.php?idReporte=' + idReporte + '&getOneServiciosFotos')
+        this.http.get(URL_SERVIS + 'servicios/servicios.php?idReporte=' + idReporte + '&getOneServiciosFotos')
+          .subscribe(
+            data => {
+              resolve(data);
+            },
+            err => {
+              console.log(err);
+            }
+          );
+      }
+    );
+  }
+    // ==============================================================
+  // CONSULTA FOTO POR SOLUCIONADO
+  // ==============================================================
+  consultarSolucionadoUrl(idReporte) {
+    return new Promise(
+      resolve => {
+        this.http.get(URL_SERVIS + 'servicios/servicios.php?idSolucion=' + idReporte + '&getOneSolucionFotos')
           .subscribe(
             data => {
               resolve(data);
@@ -71,7 +89,7 @@ export class ReporteService {
   consultarPorReporte(idReporte) {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios/servicios.php?idReporte=' + idReporte + '&getOneServicios')
+        this.http.get(URL_SERVIS + 'servicios/servicios.php?idReporte=' + idReporte + '&getOneServicios')
           .subscribe(
             data => {
               resolve(data);
@@ -91,7 +109,7 @@ export class ReporteService {
     const body = JSON.stringify(datos);
     return new Promise(
       resolve => {
-        this.http.post(URL_SERVIS + 'omrservice/servicios/servicios.php?updateReporte', body)
+        this.http.post(URL_SERVIS + 'servicios/servicios.php?updateReporte', body)
           .subscribe(
             data => {
               resolve(data);
@@ -108,7 +126,7 @@ export class ReporteService {
   detalleSolcion() {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios/servicios.php?user=' + this.user + '&getAllSolucion')
+        this.http.get(URL_SERVIS + 'servicios/servicios.php?user=' + this.user + '&getAllSolucion')
           .subscribe(
             data => {
               resolve(data);
@@ -126,7 +144,7 @@ export class ReporteService {
   consultarPorSolucion(idSoluion) {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios/servicios.php?idReporte=' + idSoluion + '&getOneSolucion')
+        this.http.get(URL_SERVIS + 'servicios/servicios.php?idReporte=' + idSoluion + '&getOneSolucion')
           .subscribe(
             data => {
               resolve(data);
@@ -156,7 +174,25 @@ export class ReporteService {
     const body = JSON.stringify(datos);
     return new Promise(
       resolve => {
-        this.http.post(URL_SERVIS + '/omrservice/servicios/usuarios.php?nuevoSolucionpos', body)
+        this.http.post(URL_SERVIS + 'servicios/usuarios.php?nuevoSolucionpos', body)
+          .subscribe(
+            data => {
+              resolve(data);
+            },
+            err => {
+              console.log(err);
+            });
+      }
+    );
+  }
+   // ==============================================================
+  // UPDATE SOLUCION
+  // ==============================================================
+  solucionEditData(datos) {
+    const body = JSON.stringify(datos);
+    return new Promise(
+      resolve => {
+        this.http.post(URL_SERVIS + 'servicios/usuarios.php?updateSolucion', body)
           .subscribe(
             data => {
               resolve(data);

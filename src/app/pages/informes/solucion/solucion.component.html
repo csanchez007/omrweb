@@ -8,18 +8,15 @@
           <div class="card-body">
               <p class="mb-2"><strong>Ingreso de solucion</strong></p>
               <div class="bloque2 mb-0">
-                  <div class="row">
-                    <div class="col-md-6">
+
+                <div class="row linea">
+                  <div class="col-md-6">
                       <div class="row">
                           <div class="col-md-4">
-                              <span class="d-inline-b wp120">Predefinido</span>
+                              <span class="d-inline-b wp120">Fecha Desde</span>
                           </div>
                           <div class="col-md-8">
-                              <select class="form-control" id="cboPredefinido" name="cboPredefinido" (change)="llamarReportePorId()"  [(ngModel)]="cboPredefinido">
-                                <option *ngIf="definidoSelctId != 0" value="{{definidoSelctId}}">{{definidoSelectText}}</option>
-                                <option  *ngIf="definidoSelctId == 0" value="0">Seleccione Detalle a Reparar</option>
-                                <option *ngFor="let pre of predefinido;" value="{{pre.id}}" >{{pre.descripcion}}<option>
-                        </select>
+                              <input type="date" class="form-control" id="fechaReporte" [(ngModel)]="fechaDesde" name="fechaReporte" value="">
                           </div>
                       </div>
                   </div>
@@ -27,40 +24,32 @@
                   <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-4">
-                            <span class="d-inline-b wp120">Nº de Unidad</span>
+                            <span class="d-inline-b wp120">Fecha Hasta</span>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="date" class="form-control" id="fechaHata" [(ngModel)]="fechaHata" name="fechaHata" value="">
+                        </div>
+                    </div>
+                </div>
+              </div>
+
+
+                  <div class="row linea">
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-4">
+                            <span class="d-inline-b wp120">Nº Patente</span>
                         </div>
                         <div class="col-md-8">
                             <input type="hidden" id="txtIdReporte" class="form-control" value="">
                             <input type="text" class="form-control" value="" id="txtNumUnidad" name="txtNumUnidad"[(ngModel)]="txtNumUnidad" disabled>
                         </div>
                     </div>
-                </div>
+                  </div>
+                  <div class="col-md-6"></div>
                   </div>
 
 
-                  <div class="row linea">
-                      <div class="col-md-6">
-                          <div class="row">
-                              <div class="col-md-4">
-                                  <span class="d-inline-b wp120">Fecha Desde</span>
-                              </div>
-                              <div class="col-md-8">
-                                  <input type="date" class="form-control" id="fechaReporte" [(ngModel)]="fechaDesde" name="fechaReporte" value="">
-                              </div>
-                          </div>
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <span class="d-inline-b wp120">Fecha Hasta</span>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="date" class="form-control" id="fechaHata" [(ngModel)]="fechaHata" name="fechaHata" value="">
-                            </div>
-                        </div>
-                    </div>
-                  </div>
 
                   <div class="row linea">
                     <div class="col-md-6">
@@ -76,35 +65,14 @@
 
                   <div class="col-md-6">
                     <div class="row">
-                        <div class="col-md-4">
-                            <span class="d-inline-b wp120">Foto: </span>
-                        </div>
+                        <div class="col-md-4"></div>
                         <div class="col-md-8">
-                          <input type="file" class="form-control" value=""  id="ruta_foto" name="ruta_foto" autocomplete="off">
-                        </div>
+                          <input id="btnAgregar" type="button" (click)="solucionEdit()" value="Guardar" class="boton" style="float:right">
+                      </div>
                     </div>
                   </div>
                   </div>
 
-                  <div class="row linea">
-                    <div class="col-md-6">
-                      <div class="row">
-                          <div class="col-md-4"></div>
-                          <div class="col-md-8"></div>
-                      </div>
-                  </div>
-
-                      <div class="col-md-6">
-                          <div class="row">
-                              <div class="col-md-4">
-                              </div>
-                              <div class="col-md-8">
-                                  <input id="btnAgregar" type="button" onclick="addUserOrUpdate();" value="Guardar" class="boton" style="float:right">
-                                  <input id="btnLimpiar" type="button" (click)="limpiar();" value="Limpiar" class="boton" style="float:right">
-                              </div>
-                          </div>
-                      </div>
-                  </div>
 
               </div>
           </div>
@@ -138,7 +106,7 @@
                               <td>{{detalle.descripcion}}</td>
                               <td>
                                   <button type="button" (click)="llamarSolucionPorId(detalle.id)" class="btn waves-effect waves-light btn-warning">Editar</button>&nbsp;
-                                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalReporte" (click)="llamarAlbumReporte(detalle.id)">Ver Fotos</button>
+                                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalReporte" (click)="llamarAlbumSolucion(detalle.id, detalle.descripcion)">Ver Fotos</button>
                               </td>
                           </tr>
                       </tbody>
@@ -160,42 +128,26 @@
 
               <div class="row el-element-overlay">
                   <div class="col-md-12">
-                      <h4 class="card-title">Fotos del reporte</h4>
-                      <h6 class="card-subtitle m-b-20 text-muted">you can make gallery like this</h6>
+                      <h4 class="card-title">Fotos del Solución</h4>
+                      <h6 class="card-subtitle m-b-20 text-muted">{{DescripcionRS}}</h6>
                   </div>
-                  <div *ngFor="let url of urls; index as i" class="col-lg-3 col-md-6">
+                  <div  *ngFor="let url of urls; index as i" class="col-lg-3 col-md-6">
                       <div class="card">
                           <div class="el-card-item">
-                              <div class="el-card-avatar el-overlay-1"> <img src="{{url.rutaFoto}}" alt="user" />
-                                  <div class="el-overlay">
-                                      <ul class="el-info">
-                                          <li><a class="btn default btn-outline image-popup-vertical-fit" href="javascript:void(0);" style="background-image: url('{{url.rutaFoto}}')"><i class="icon-magnifier"></i></a></li>
+                            <div class="el-card-avatar el-overlay-1"> <img [src]="url.rutaFoto" alt="user" />
+                                <div class="el-overlay">
+                                    <ul class="el-info">
+                                        <li><a class="btn default btn-outline image-popup-vertical-fit" [href]="url.rutaFoto"><i class="icon-magnifier"></i></a></li>
                                       </ul>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-lg-3 col-md-6">
-                      <div class="card">
-                          <div class="el-card-item">
-                              <div class="el-card-avatar el-overlay-1"> <img src="../assets/images/big/img1.jpg" alt="user" />
-                                  <div class="el-overlay">
-                                      <ul class="el-info">
-                                          <li><a class="btn default btn-outline image-popup-vertical-fit" href="../assets/images/users/1.jpg"><i class="icon-magnifier"></i></a></li>
-                                          <li><a class="btn default btn-outline" href="javascript:void(0);"><i class="icon-link"></i></a></li>
-                                      </ul>
-                                  </div>
-                              </div>
-                              <div class="el-card-content">
-                                  <h3 class="box-title">Project title</h3> <small>subtitle of project</small>
-                                  <br/> </div>
-                          </div>
-                      </div>
-                  </div>
-
+                                </div>
+                            </div>
+                            <div class="el-card-content"></div>
+                        </div>
+                    </div>
+                </div>
               </div>
+
+
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

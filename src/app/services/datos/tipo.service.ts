@@ -13,7 +13,7 @@ export class TipoService {
   consultarTipoDatos() {
     return new Promise(
       resolve => {
-        this.http.get(URL_SERVIS + '/omrservice/servicios//servicios.php?getAllTipoD')
+        this.http.get(URL_SERVIS + 'servicios//servicios.php?getAllTipoD')
           .subscribe(
             data => {
               resolve(data);
