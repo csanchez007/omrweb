@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class DatosMovilComponent implements OnInit {
 
+  public numCarro: string;
   public numPatente: string;
   public nomMarca: string
   public nomModelo: string;
@@ -60,7 +61,7 @@ export class DatosMovilComponent implements OnInit {
   }
 
   addDMovil(){
-    if( this.numPatente === '' || this.cboTipo === '0' || this.nomMarca === '' ||
+    if( this.numCarro === '' || this.numPatente === '' || this.cboTipo === '0' || this.nomMarca === '' ||
         this.nomModelo === '' || this.numChasis === '' || this.numMotor  === ''||
         this.ano  ==='' || this.estado ==='0'){
       Swal.fire({
@@ -71,6 +72,7 @@ export class DatosMovilComponent implements OnInit {
       return false;
     }
       const datos = {
+        numCarro: this.numCarro,
         numPatente: this.numPatente,
         idTipoMovil: this.cboTipo,
         nomMarca: this.nomMarca,
@@ -111,7 +113,7 @@ export class DatosMovilComponent implements OnInit {
     .then(
       async data => {
         console.log(data);
-
+        this.numCarro = data['numCarro'];
         this.numPatente = data['numPatente'];
         this.cboTipo = data['idTipoMovil'];
         this.nomMarca = data['nomMarca'];
@@ -126,9 +128,9 @@ export class DatosMovilComponent implements OnInit {
 
 
      editDMovil(id){
-    if( this.numPatente === '' || this.cboTipo === '0' || this.nomMarca === '' ||
-        this.nomModelo === '' || this.numChasis === '' || this.numMotor  === ''||
-        this.ano  ==='' || this.estado ==='0'){
+    if( this.numPatente === '' ||this.numPatente === '' || this.cboTipo === '0'
+       || this.nomMarca === '' || this.nomModelo === '' || this.numChasis === ''
+       || this.numMotor  === ''|| this.ano  ==='' || this.estado ==='0'){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -138,6 +140,7 @@ export class DatosMovilComponent implements OnInit {
     }
       const datos = {
         id: id,
+        numCarro: this.numCarro,
         numPatente: this.numPatente,
         idTipoMovil: this.cboTipo,
         nomMarca: this.nomMarca,
@@ -182,6 +185,7 @@ export class DatosMovilComponent implements OnInit {
 
 
   limpiarCampos(){
+    this.numCarro= '';
     this.numPatente = '';
     this.cboTipo = '0';
     this.nomMarca= '';

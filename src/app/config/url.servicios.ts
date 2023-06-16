@@ -1,8 +1,8 @@
 /* CASA */
-export const URL_SERVIS = 'http://localhost/omr/omrservice/';
+export const URL_SERVIS = 'http://192.168.1.49/omr_taller/omrbssservice/';
 
 /* TRABAJO */
-// export const URL_SERVIS = 'http://192.168.100.20';
+//export const URL_SERVIS = 'https://www.infositechile.cl/omrservice/';
 
 /* SERVIDOR ACTUAL WEB */
  // export const URL_SERVIS = 'https://www.app-control.cl/';

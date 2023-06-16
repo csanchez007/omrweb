@@ -44,6 +44,13 @@ import { NotificacionesComponent } from './informes/notificaciones/notificacione
 import { RegistroMovilComponent } from './documentos/registro-movil/registro-movil.component';
 import { RegistroConductorComponent } from './documentos/registro-conductor/registro-conductor.component';
 import { OtrosDocumentosComponent } from './documentos/otros-documentos/otros-documentos.component';
+import { PdfComponent } from './pdf/pdf.component';
+import { DocumentosComponent } from './documentos/documentos/documentos.component';
+/* ==============================================================
+    CONFIGURACIÓN
+  ============================================================== */
+import { UsuarioComponent } from './configuracion/usuario/usuario.component';
+import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 
 
 const routes: Routes = [
@@ -90,9 +97,16 @@ const routes: Routes = [
             /* ==============================================================
                DOCUMENTOS
               ============================================================== */
+            { path: 'documentos', component: DocumentosComponent, data: { titulo: 'Documentos' }},
             { path: 'removil', component: RegistroMovilComponent, data: { titulo: 'Registro Móvil' }},
             { path: 'reconductor', component: RegistroConductorComponent, data: { titulo: 'Registro Conductor' }},
             { path: 'tipodoc', component: OtrosDocumentosComponent, data: { titulo: 'Otros Documentos' }},
+            { path: 'pdf', component: PdfComponent, data: { titulo: 'PDF' }},
+            /* ==============================================================
+               DOCUMENTOS
+              ============================================================== */
+            { path: 'usuarios', component: UsuarioComponent, data: { titulo: 'Usuarios' }},
+            { path: 'registro-usuario', component: RegistroUsuarioComponent, data: { titulo: 'Registro de Usuarios' }},
           ]
     },
 ];

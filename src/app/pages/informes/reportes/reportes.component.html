@@ -12,14 +12,10 @@
                       <div class="col-md-6">
                         <div class="row">
                           <div class="col-md-4">
-                          <span class="d-inline-b wp120">Nº Patente</span>
+                          <span class="d-inline-b wp120">Nº Carro</span>
                         </div>
                         <div class="col-md-8">
-                          <select class="form-control" [(ngModel)]="cboPatente" id="cboPatente" name="cboPatente" disabled>
-                            <option value="0">Seleccionar Patente</option>
-                            <option *ngFor="let dgp of datosGeneralesPatente"
-                            value="{{dgp.id}}">{{dgp.numPatente}}</option>
-                          </select>
+                          <input type="text" class="form-control" value="" [(ngModel)]="numMovil" name="numMovil" id="numMovil" disabled>
                         </div>
                       </div>
                       </div>
@@ -57,10 +53,10 @@
                         <div class="col-md-6">
                           <div class="row">
                             <div class="col-md-4">
-                                <span class="d-inline-b wp120">Descripción</span>
+                                <span class="d-inline-b wp120">Solución</span>
                             </div>
                             <div class="col-md-8">
-                                <textarea class="form-control" [(ngModel)]="txtDescripcion" name="txtDescripción" id="txtDescripción" rows="5"></textarea>
+                              <input type="text" class="form-control" value="" [(ngModel)]="txtDescripcionSolucion" name="txtDescripcionSolucion" id="txtDescripcionSolucion">
                             </div>
                         </div>
                         </div>
@@ -69,8 +65,12 @@
                     <div class="row linea">
                         <div class="col-md-6">
                             <div class="row">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-8"></div>
+                                <div class="col-md-4">
+                                  <span class="d-inline-b wp-120">Falla</span>
+                                </div>
+                                <div class="col-md-8">
+                                  <input type="text" class="form-control" value="" [(ngModel)]="txtDescripcion" name="txtDescripción" id="txtDescripción">
+                                </div>
                             </div>
                         </div>
 
@@ -105,6 +105,7 @@
                                 <th>Usuario RUT</th>
                                 <th>Unidad</th>
                                 <th>Descripcion</th>
+                                <th>Solución</th>
                                 <th>Solucionado</th>
                                 <th>Fecha y Hora</th>
                                 <th>Estado</th>
@@ -114,14 +115,16 @@
                         <tbody>
                             <tr *ngFor="let detalle of detallesReport">
                                 <td>{{detalle.Usuario}}</td>
-                                <td>{{detalle.numPatente}}</td>
+                                <td>{{detalle.numMovil}}</td>
                                 <td>{{detalle.descripcion}}</td>
+                                <td>{{detalle.descripcionSolucion}}</td>
                                 <td>{{detalle.solucions}}</td>
-                                <td>{{detalle.fecha}}</td>
+                                <td>{{detalle.fecha | customDate}}</td>
                                 <td>{{detalle.est}}</td>
                                 <td>
-                                    <button type="button" class="btn waves-effect waves-light btn-warning" (click)="llamarReporteID(detalle.id)">Editar</button>&nbsp;
-                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalReporte" (click)="llamarAlbumReporte(detalle.id, detalle.descripcion)">Ver Fotos</button>
+                                    <button type="button" class="btn btn-light" (click)="createPdf(detalle.id)"><i class="fa fa-file-pdf-o"></i> OT</button>&nbsp;
+                                    <button type="button" class="btn waves-effect waves-light btn-warning" (click)="llamarReporteID(detalle.id)"><i class="fa fa-edit"></i></button>&nbsp;
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalReporte" (click)="llamarAlbumReporte(detalle.id, detalle.descripcion)"><i class="fa fa-file-photo-o"></i></button>
                                 </td>
                             </tr>
                         </tbody>

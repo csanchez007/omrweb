@@ -13,7 +13,7 @@ export class SidebarService {
         { titulo: 'Gráficas', url: 'grafica' },
       ]
     },
-    {
+   /* {
       titulo: 'Datos',
       icono: 'mdi mdi-bullseye',
       submenu: [
@@ -21,10 +21,10 @@ export class SidebarService {
         { titulo: 'Revisión Técnica', url: 'revision-tec' },
         { titulo: 'Permiso de Circu.', url: 'permiso-circ' },
         { titulo: 'Datos Generales', url: 'datos-generales' },
-       /* { titulo: 'Otros', url: 'datos-movil' }*/
+        { titulo: 'Otros', url: 'datos-movil' }
       ]
     },
-   /* {
+    {
       titulo: 'Mantención',
       icono: 'mdi mdi-brightness-5',
       submenu: [
@@ -38,7 +38,7 @@ export class SidebarService {
         { titulo: 'Preventivo', url: 'preventivo' },
         { titulo: 'Otras ', url: 'preventivo' },
       ]
-    },*/
+    },
     {
       titulo: 'Stock',
       icono: 'mdi mdi-vector-polygon',
@@ -46,7 +46,7 @@ export class SidebarService {
         { titulo: 'Stock', url: 'stock' },
         { titulo: 'Equipamiento', url: 'equipamiento' },
       ]
-    },
+    },*/
     {
       titulo: 'Informes',
       icono: 'mdi mdi-information-outline',
@@ -61,18 +61,19 @@ export class SidebarService {
       titulo: 'Documentación',
       icono: 'mdi mdi-file-document',
       submenu: [
-        { titulo: 'Registro Móvil', url: 'removil' },
+        { titulo: 'Documentos Gral.', url: 'documentos' },
+       /* { titulo: 'Registro Móvil', url: 'removil' },
         { titulo: 'Registro Conductor', url: 'reconductor' },
-        { titulo: 'Otros Documentos', url: 'tipodoc' },
+        { titulo: 'Otros Documentos', url: 'tipodoc' },*/
       ]
     },
     {
       titulo: 'Configuración',
       icono: 'mdi mdi-wrench',
       submenu: [
-      /*  { titulo: 'Registro móvil', url: 'reportes' },
-        { titulo: 'Registro Conductor', url: 'solucion' },
-        { titulo: 'Equipamiento móvil', url: 'solucion' },*/
+        { titulo: 'Usuario', url: 'usuarios' },
+        { titulo: 'Registro Usuario', url: 'registro-usuario' },
+       /* { titulo: 'Equipamiento móvil', url: 'solucion' },*/
       ]
     },
   ];

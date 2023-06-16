@@ -7,8 +7,7 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-equipamiento',
-  templateUrl: './equipamiento.component.html',
-  styleUrls: ['./equipamiento.component.css']
+  templateUrl: './equipamiento.component.html'
 })
 
 export class EquipamientoComponent implements OnInit {
@@ -195,9 +194,6 @@ async uploadimagen(id) {
     let postData = new FormData();
 
     postData.append('file', this.ruta_foto);
-    // tslint:disable-next-line:prefer-const
-    // tslint:disable-next-line:typedef-whitespace
-    // tslint:disable-next-line:prefer-const
     let data: Observable<any> = this.http.post(url, postData);
     data.subscribe(async (result) => {
       console.log(result.image_url);

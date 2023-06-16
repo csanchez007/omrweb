@@ -1,0 +1,111 @@
+<!-- =============================================================
+  DOCUMENTOS
+============================================================== -->
+<div class="row mt-1">
+  <!-- column -->
+  <div class="col-lg-12">
+      <div class="card mb-2">
+          <div class="card-body">
+              <p class="mb-2"><strong>Registro Móvil</strong></p>
+              <div class="bloque2 mb-0">
+                  <div class="row linea">
+                    <div class="col-md-4">
+                      <div class="row">
+                          <div class="col-md-4">
+                              <span class="d-inline-b wp120">Documentos</span>
+                          </div>
+                          <div class="col-md-8">
+                              <select class="form-control"  [(ngModel)]="selectDoc" id="selectDoc" name="selectDoc" >
+                          <option value="0">Seleccione Documentos</option>
+                          <option value="OT">OT</option>
+                          <option value="Presupuesto">Presupuesto</option>
+                          <option value="Ordenes de compras">Ordenes de compras</option>
+                          <option value="Factura">Factura</option>
+                        </select>
+                          </div>
+                      </div>
+                  </div>
+                    <div class="col-md-4">
+                      <div class="row">
+                          <div class="col-md-4">
+                              <span class="d-inline-b wp120">ºN Doc. y Carro</span>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" class="form-control" [(ngModel)]="numCarroDoc" id="numCarroDoc"  name="numCarroDoc" value="">
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="d-inline-b wp120">Documento: </span>
+                        </div>
+                        <div class="col-md-8">
+                          <input type="file" (change)="capturarFile($event)" class="form-control" value=""  autocomplete="off">
+                        </div>
+                    </div>
+                  </div>
+                  </div>
+
+                  <div class="row linea">
+                    <div class="col-md-6">
+                      <div class="row">
+                          <div class="col-md-4"></div>
+                          <div class="col-md-8"></div>
+                      </div>
+                  </div>
+
+                      <div class="col-md-6">
+                          <div class="row">
+                              <div class="col-md-4">
+                              </div>
+                              <div class="col-md-8">
+                                  <input id="btnAgregar" type="button" value="Guardar" (click)="insertPDF()" class="boton" style="float:right">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!---->
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+<div class="row">
+  <div class="col-12">
+      <div class="card">
+          <div class="card-body">
+              <div class="table-responsive m-t-10">
+                  <table id="tblInfoDoc" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                      <thead>
+                          <tr>
+                              <th>Usuario</th>
+                              <th>Tipo Documento</th>
+                              <th>ºN Carro</th>
+                              <th>Fecha</th>
+                              <th>Ver Doc</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let doc of getAllMMD">
+                              <td>{{doc.Nombre}}</td>
+                              <td>{{doc.tipo_doc}}</td>
+                              <td>{{doc.num_doc_carro}}</td>
+                              <td>{{doc.fechaHora  | customDate}}</td>
+                              <td>
+                                  <button type="button" (click)="llamarUnDoc(doc.id)"  class="btn waves-effect waves-light btn-warning" style="float:center">Descargar</button>&nbsp;
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+

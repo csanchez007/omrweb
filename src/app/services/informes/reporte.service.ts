@@ -203,4 +203,57 @@ export class ReporteService {
       }
     );
   }
+
+   // ==============================================================
+  // GUARDAR DOCUMENTOS
+  // ==============================================================
+  insertarDocService(datos) {
+    const body = JSON.stringify(datos);
+    return new Promise(
+      resolve => {
+        this.http.post(URL_SERVIS + 'servicios/servicios.php?addDoc', body)
+          .subscribe(
+            data => {
+              resolve(data);
+            },
+            err => {
+              console.log(err);
+            });
+      }
+    );
+  }
+  consultaAllDoc(){
+    return new Promise(
+      resolve => {
+        this.http.get(URL_SERVIS + 'servicios/servicios.php?getAllDOC')
+          .subscribe(
+            data => {
+              resolve(data);
+            },
+            err => {
+              console.log(err);
+            }
+          );
+      }
+    );
+  }
+
+    // ==============================================================
+  // CONSULTA UNO DE LAS SOLUCIONES
+  // ==============================================================
+  consultarPoDoc(id) {
+    return new Promise(
+      resolve => {
+        this.http.get(URL_SERVIS + 'servicios/servicios.php?id=' + id + '&getOneDocument')
+          .subscribe(
+            data => {
+              resolve(data);
+            },
+            err => {
+              console.log(err);
+            }
+          );
+      }
+    );
+  }
 }

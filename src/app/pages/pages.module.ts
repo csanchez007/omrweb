@@ -36,11 +36,14 @@ import { RegistroMovilComponent } from './documentos/registro-movil/registro-mov
 import { RegistroConductorComponent } from './documentos/registro-conductor/registro-conductor.component';
 import { OtrosDocumentosComponent } from './documentos/otros-documentos/otros-documentos.component';
 import { CombustibleComponent } from './informes/combustible/combustible.component';
+
 import { MovilComponent } from './datos/movil/movil.component';
-
-
-
-
+import { CustomDatePipe } from './pipe/custom.datepipe';
+import { DocumentosComponent } from './documentos/documentos/documentos.component';
+import { UsuarioComponent } from './configuracion/usuario/usuario.component';
+import { PermisosComponent } from './configuracion/permisos/permisos.component';
+import { PredefinidosComponent } from './configuracion/predefinidos/predefinidos.component';
+import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component'
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -73,6 +76,12 @@ import { MovilComponent } from './datos/movil/movil.component';
     OtrosDocumentosComponent,
     CombustibleComponent,
     MovilComponent,
+    CustomDatePipe,
+    DocumentosComponent,
+    UsuarioComponent,
+    PermisosComponent,
+    PredefinidosComponent,
+    RegistroUsuarioComponent
   ],
   exports: [
     DashboardComponent,
@@ -86,7 +95,8 @@ import { MovilComponent } from './datos/movil/movil.component';
     FormsModule,
     SharedModule,
     RouterModule,
-    ComponentsModule
+    ComponentsModule,
+
   ]
 })
 export class PagesModule { }
